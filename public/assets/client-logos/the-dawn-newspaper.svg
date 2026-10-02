@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" width="240" height="70">
+  <g transform="translate(10, 11)">
+    <circle cx="22" cy="22" r="20" fill="#b45309" />
+    <path d="M 6,26 L 38,26 M 9,30 L 35,30 M 13,34 L 31,34" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+    <path d="M 14,22 A 8,8 0 0,1 30,22 Z" fill="#fef08a" />
+    <line x1="22" y1="8" x2="22" y2="12" stroke="#fef08a" stroke-width="2" stroke-linecap="round" />
+    <line x1="12" y1="12" x2="15" y2="15" stroke="#fef08a" stroke-width="2" stroke-linecap="round" />
+    <line x1="32" y1="12" x2="29" y2="15" stroke="#fef08a" stroke-width="2" stroke-linecap="round" />
+  </g>
+  <text x="56" y="28" font-family="Georgia, serif" font-weight="bold" font-size="16" fill="#0f172a" letter-spacing="0.5">THE DAWN</text>
+  <text x="57" y="43" font-family="system-ui, sans-serif" font-weight="600" font-size="8.5" fill="#b45309" letter-spacing="1.5">DAILY NEWSPAPER JUBA</text>
+</svg>

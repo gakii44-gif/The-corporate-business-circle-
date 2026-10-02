@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" width="240" height="70">
+  <g transform="translate(10, 11)">
+    <circle cx="22" cy="22" r="20" fill="#0284c7" />
+    <path d="M 10,23 C 14,19 22,14 30,12 C 27,18 25,23 34,25 C 27,27 22,26 19,30 C 18,27 16,25 10,23 Z" fill="#ffffff" />
+  </g>
+  <text x="56" y="28" font-family="system-ui, sans-serif" font-weight="800" font-size="15" fill="#0369a1" letter-spacing="0.5">SKY DOVE TRAVELERS</text>
+  <text x="57" y="43" font-family="system-ui, sans-serif" font-weight="600" font-size="8.5" fill="#0284c7" letter-spacing="1">SAFARIS &amp; BUSINESS TRAVEL</text>
+</svg>

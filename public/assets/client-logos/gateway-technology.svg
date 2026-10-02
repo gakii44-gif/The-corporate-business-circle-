@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" width="240" height="70">
+  <g transform="translate(12, 10)">
+    <path d="M 8,42 L 8,16 C 8,8 36,8 36,16 L 36,42" fill="none" stroke="#2563eb" stroke-width="3" stroke-linecap="round" />
+    <line x1="16" y1="26" x2="28" y2="26" stroke="#0284c7" stroke-width="2.5" />
+    <circle cx="22" cy="18" r="3" fill="#2563eb" />
+  </g>
+  <text x="58" y="29" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="17" fill="#1e3a8a">GATEWAY</text>
+  <text x="142" y="29" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="14" fill="#0284c7">TECH</text>
+  <text x="59" y="45" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="8.5" fill="#64748b" letter-spacing="1.2">ENTERPRISE ICT &amp; INTEGRATION</text>
+</svg>

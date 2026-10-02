@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" width="240" height="70">
+  <g transform="translate(10, 10)">
+    <rect x="6" y="6" width="36" height="36" rx="8" fill="#0d9488" />
+    <path d="M 14,32 C 18,22 30,22 34,32" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round" />
+    <circle cx="24" cy="18" r="4" fill="#fef08a" />
+  </g>
+  <text x="56" y="28" font-family="serif" font-weight="bold" font-size="16" fill="#134e4a">BROS RESORT</text>
+  <text x="57" y="44" font-family="system-ui, sans-serif" font-weight="600" font-size="8.5" fill="#0f766e" letter-spacing="1.5">RIVERSIDE NILE • JUBA</text>
+</svg>

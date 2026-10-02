@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" width="240" height="70">
+  <g transform="translate(10, 10)">
+    <polygon points="12,36 24,8 36,36 24,28" fill="#0284c7" />
+    <circle cx="24" cy="18" r="3" fill="#38bdf8" />
+  </g>
+  <text x="54" y="29" font-family="system-ui, sans-serif" font-weight="900" font-size="18" fill="#0369a1" letter-spacing="1">AIR GRAPHIC</text>
+  <text x="55" y="44" font-family="system-ui, sans-serif" font-weight="600" font-size="8.5" fill="#64748b" letter-spacing="1">DESIGN &amp; VISUAL BRANDING</text>
+</svg>

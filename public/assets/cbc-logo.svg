@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+  <!-- Brown / Dark Coffee Bars (Left Wing) -->
+  <!-- 4 parallel bars with horizontal top & bottom cuts -->
+  <g fill="#3D291D">
+    <!-- Bar 1 (leftmost) -->
+    <polygon points="160,240 186,240 248,368 222,368" />
+    <!-- Bar 2 -->
+    <polygon points="196,240 222,240 284,368 258,368" />
+    <!-- Bar 3 -->
+    <polygon points="232,240 258,240 320,368 294,368" />
+    <!-- Bar 4 -->
+    <polygon points="268,240 294,240 356,368 330,368" />
+  </g>
+
+  <!-- Cyan / Azure Blue Bars (Right Wing) -->
+  <!-- 4 parallel bars slanted up-right with stepped tops and bottoms -->
+  <g fill="#00AEEF">
+    <!-- Bar 1 (inner) -->
+    <polygon points="360,148 386,148 316,268 290,268" />
+    <!-- Bar 2 -->
+    <polygon points="400,114 426,114 340,296 314,296" />
+    <!-- Bar 3 -->
+    <polygon points="440,80  466,80  364,324 338,324" />
+    <!-- Bar 4 (outermost) -->
+    <polygon points="480,46  506,46  388,352 362,352" />
+  </g>
+
+  <!-- Typography -->
+  <g id="logo-text" font-family="system-ui, -apple-system, sans-serif" font-weight="900" text-anchor="middle" letter-spacing="-0.5px">
+    <text x="300" y="425" font-size="34" fill="#0C1A2E">THE CORPORATE</text>
+    <text x="300" y="468" font-size="34" fill="#0C1A2E">BUSINES CIRCLE</text>
+  </g>
+  <g id="logo-tagline" font-family="system-ui, -apple-system, sans-serif" font-weight="700" text-anchor="middle" letter-spacing="3.5px">
+    <text x="300" y="505" font-size="18" fill="#00AEEF">THE CYCLE OF GREAT MINDS</text>
+  </g>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" width="240" height="70">
+  <g transform="translate(10, 10)">
+    <polygon points="24,6 42,20 34,42 14,42 6,20" fill="#0369a1" />
+    <circle cx="24" cy="24" r="8" fill="#ffffff" />
+  </g>
+  <text x="56" y="29" font-family="system-ui, sans-serif" font-weight="900" font-size="17" fill="#0f172a">ETIHAD MOTORS</text>
+  <text x="57" y="44" font-family="system-ui, sans-serif" font-weight="600" font-size="8.5" fill="#0284c7" letter-spacing="1.2">COMMERCIAL FLEET SALES &amp; PARTS</text>
+</svg>

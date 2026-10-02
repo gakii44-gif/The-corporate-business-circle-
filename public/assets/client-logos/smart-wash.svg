@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" width="240" height="70">
+  <g transform="translate(10, 11)">
+    <circle cx="22" cy="22" r="20" fill="#0891b2" />
+    <path d="M 22,9 C 22,9 31,21 31,26 C 31,31 27,35 22,35 C 17,35 13,31 13,26 C 13,21 22,9 22,9 Z" fill="#ffffff" />
+    <circle cx="26" cy="24" r="2" fill="#0891b2" />
+  </g>
+  <text x="56" y="28" font-family="system-ui, sans-serif" font-weight="900" font-size="16" fill="#0e7490" letter-spacing="1">SMART WASH</text>
+  <text x="57" y="43" font-family="system-ui, sans-serif" font-weight="600" font-size="8.5" fill="#0891b2" letter-spacing="1.2">CLEANING &amp; SANITATION</text>
+</svg>

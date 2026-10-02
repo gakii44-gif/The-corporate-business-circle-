@@ -1,0 +1,8 @@
+{
+  "name": "Corporate Business Circle",
+  "description": "Corporate Business Circle (CBC) provides tailored corporate solutions, strategic partnerships, high-impact summits, and B2B linkages for enterprises across South Sudan and Africa.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

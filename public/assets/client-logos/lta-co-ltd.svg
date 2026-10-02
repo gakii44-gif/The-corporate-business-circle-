@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" width="240" height="70">
+  <g transform="translate(10, 10)">
+    <polygon points="24,6 42,24 24,42 6,24" fill="#4338ca" />
+    <polygon points="24,14 34,24 24,34 14,24" fill="#ffffff" />
+  </g>
+  <text x="56" y="29" font-family="system-ui, sans-serif" font-weight="900" font-size="18" fill="#312e81" letter-spacing="1">LTA CO. LTD</text>
+  <text x="57" y="44" font-family="system-ui, sans-serif" font-weight="600" font-size="8.5" fill="#64748b" letter-spacing="1.2">COMMERCIAL ENTERPRISES</text>
+</svg>

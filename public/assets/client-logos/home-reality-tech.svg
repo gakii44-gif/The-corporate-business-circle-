@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" width="240" height="70">
+  <g transform="translate(10, 10)">
+    <polygon points="24,6 42,16 42,36 24,46 6,36 6,16" fill="#0c1a2e" stroke="#00aeef" stroke-width="2" />
+    <path d="M 16,28 L 24,20 L 32,28 M 20,26 L 20,34 L 28,34 L 28,26" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" />
+  </g>
+  <text x="60" y="30" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="16" fill="#0c1a2e">HOME REALITY</text>
+  <text x="175" y="30" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="16" fill="#00aeef">TECH</text>
+  <text x="60" y="46" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="8.5" fill="#64748b" letter-spacing="1.5">SMART SYSTEMS &amp; IT SOLUTIONS</text>
+</svg>

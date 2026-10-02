@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" width="240" height="70">
+  <g transform="translate(10, 10)">
+    <circle cx="24" cy="24" r="20" fill="#f97316" />
+    <polygon points="18,14 34,24 18,34" fill="#ffffff" />
+  </g>
+  <text x="58" y="28" font-family="system-ui, sans-serif" font-weight="800" font-size="15" fill="#0f172a">ADVANCE YOUTH</text>
+  <text x="59" y="44" font-family="system-ui, sans-serif" font-weight="700" font-size="9" fill="#ea580c" letter-spacing="1">RADIO 99.9 FM • JUBA</text>
+</svg>

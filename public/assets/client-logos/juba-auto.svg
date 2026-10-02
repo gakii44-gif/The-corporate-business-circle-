@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" width="240" height="70">
+  <g transform="translate(10, 10)">
+    <rect x="8" y="12" width="34" height="24" rx="4" fill="#d97706" />
+    <circle cx="16" cy="36" r="5" fill="#0f172a" />
+    <circle cx="34" cy="36" r="5" fill="#0f172a" />
+    <polygon points="12,18 20,12 30,12 36,18" fill="#ffffff" />
+  </g>
+  <text x="56" y="29" font-family="system-ui, sans-serif" font-weight="900" font-size="18" fill="#0f172a">JUBA AUTO</text>
+  <text x="57" y="44" font-family="system-ui, sans-serif" font-weight="600" font-size="8.5" fill="#b45309" letter-spacing="1">CO. LTD • FOUNDING PARTNER</text>
+</svg>

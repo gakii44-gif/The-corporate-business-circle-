@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" width="240" height="70">
+  <g transform="translate(10, 11)">
+    <circle cx="22" cy="22" r="20" fill="#1e1b4b" />
+    <path d="M 12,28 L 15,16 L 22,21 L 29,16 L 32,28 Z" fill="#fbbf24" stroke="#d97706" stroke-width="1" />
+    <circle cx="15" cy="14" r="1.5" fill="#fbbf24" />
+    <circle cx="22" cy="19" r="1.5" fill="#fbbf24" />
+    <circle cx="29" cy="14" r="1.5" fill="#fbbf24" />
+  </g>
+  <text x="56" y="28" font-family="Georgia, serif" font-weight="bold" font-size="16" fill="#1e1b4b" letter-spacing="1">ROYAL TRAVEL</text>
+  <text x="57" y="43" font-family="system-ui, sans-serif" font-weight="600" font-size="8.5" fill="#d97706" letter-spacing="1.2">EXECUTIVE AIR &amp; TOURS</text>
+</svg>

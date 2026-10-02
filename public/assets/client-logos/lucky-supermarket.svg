@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" width="240" height="70">
+  <g transform="translate(10, 10)">
+    <circle cx="24" cy="24" r="20" fill="#15803d" />
+    <path d="M 18,18 C 18,12 24,12 24,18 C 24,12 30,12 30,18 C 30,24 24,24 24,30 C 24,24 18,24 18,18 Z" fill="#86efac" />
+  </g>
+  <text x="56" y="28" font-family="system-ui, sans-serif" font-weight="900" font-size="16" fill="#14532d">LUCKY MARKET</text>
+  <text x="57" y="44" font-family="system-ui, sans-serif" font-weight="700" font-size="8.5" fill="#15803d" letter-spacing="1">SUPERMARKET CHAIN JUBA</text>
+</svg>

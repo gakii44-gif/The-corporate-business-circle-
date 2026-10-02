@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" width="240" height="70">
+  <g transform="translate(10, 10)">
+    <rect x="6" y="10" width="36" height="28" rx="3" fill="#0f172a" />
+    <circle cx="14" cy="18" r="3" fill="#f59e0b" />
+    <circle cx="24" cy="18" r="3" fill="#f59e0b" />
+    <circle cx="34" cy="18" r="3" fill="#f59e0b" />
+    <polygon points="20,24 30,30 20,36" fill="#ffffff" />
+  </g>
+  <text x="56" y="28" font-family="system-ui, sans-serif" font-weight="800" font-size="14" fill="#0f172a">FILMMAKERS UNION</text>
+  <text x="57" y="44" font-family="system-ui, sans-serif" font-weight="700" font-size="8.5" fill="#d97706" letter-spacing="1">SOUTH SUDAN CINEMA</text>
+</svg>

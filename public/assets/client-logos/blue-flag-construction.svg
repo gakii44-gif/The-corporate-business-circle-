@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" width="240" height="70">
+  <g transform="translate(10, 10)">
+    <rect x="8" y="8" width="32" height="32" rx="4" fill="#1d4ed8" />
+    <polygon points="14,14 34,22 14,30" fill="#fbbf24" />
+    <line x1="14" y1="12" x2="14" y2="38" stroke="#ffffff" stroke-width="2" />
+  </g>
+  <text x="56" y="28" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="15" fill="#1e3a8a">BLUE FLAG</text>
+  <text x="136" y="28" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="14" fill="#d97706">CONSTRUCTION</text>
+  <text x="57" y="44" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="8.5" fill="#64748b" letter-spacing="1">COMMERCIAL INFRASTRUCTURE</text>
+</svg>

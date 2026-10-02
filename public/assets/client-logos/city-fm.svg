@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" width="240" height="70">
+  <g transform="translate(10, 10)">
+    <circle cx="24" cy="24" r="20" fill="#0284c7" />
+    <path d="M 18,34 L 18,22 L 24,14 L 30,22 L 30,34 Z" fill="#ffffff" />
+    <path d="M 12,24 C 12,18 16,14 24,14" fill="none" stroke="#bae6fd" stroke-width="2" />
+    <path d="M 36,24 C 36,18 32,14 24,14" fill="none" stroke="#bae6fd" stroke-width="2" />
+  </g>
+  <text x="58" y="29" font-family="system-ui, sans-serif" font-weight="900" font-size="18" fill="#0f172a">CITY FM</text>
+  <text x="136" y="29" font-family="system-ui, sans-serif" font-weight="800" font-size="15" fill="#0284c7">88.4</text>
+  <text x="59" y="44" font-family="system-ui, sans-serif" font-weight="600" font-size="8.5" fill="#64748b" letter-spacing="1.2">JUBA BROADCASTING</text>
+</svg>

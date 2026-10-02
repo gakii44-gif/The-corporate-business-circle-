@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" width="240" height="70">
+  <g transform="translate(10, 10)">
+    <polygon points="24,6 42,24 24,42 6,24" fill="#eab308" stroke="#ca8a04" stroke-width="2" />
+    <circle cx="24" cy="24" r="7" fill="none" stroke="#0f172a" stroke-width="2.5" />
+  </g>
+  <text x="56" y="28" font-family="system-ui, sans-serif" font-weight="900" font-size="15" fill="#0f172a">DIAMOND DRIVING</text>
+  <text x="57" y="44" font-family="system-ui, sans-serif" font-weight="700" font-size="8.5" fill="#ca8a04" letter-spacing="1">CERTIFIED DRIVING ACADEMY</text>
+</svg>
