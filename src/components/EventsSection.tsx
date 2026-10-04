@@ -18,7 +18,9 @@ import {
   CheckCircle2,
   ExternalLink,
   Play,
-  Film
+  Film,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import { CBC_PIXIESET_URL } from '../data/pixiesetPhotos';
 
@@ -38,6 +40,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
   const [activeTab, setActiveTab] = useState<EventTab>('done');
   const [selectedCategory, setSelectedCategory] = useState<EventCategory>('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [cardActiveImages, setCardActiveImages] = useState<Record<string, number>>({});
 
   const categories: EventCategory[] = [
     'All',
@@ -430,65 +433,160 @@ END:VCALENDAR`;
                       }`}
                     >
                       {/* Image & Badges Banner */}
-                      <div className="relative h-56 sm:h-64 w-full overflow-hidden bg-slate-900">
-                        <img
-                          src={event.image}
-                          alt={event.title}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#0c1a2e] via-[#0c1a2e]/50 to-transparent"></div>
+                      {(() => {
+                        const hasGallery = event.galleryImages && event.galleryImages.length > 0;
+                        const currentImgIdx = cardActiveImages[event.id] ?? 0;
+                        const currentImage = hasGallery && event.galleryImages ? event.galleryImages[currentImgIdx]?.url || event.image : event.image;
+                        const currentCaption = hasGallery && event.galleryImages ? event.galleryImages[currentImgIdx]?.caption : null;
 
-                        {/* Category & Status Badges */}
-                        <div className="absolute top-4 left-4 right-4 flex flex-wrap items-center justify-between gap-2">
-                          <div className="flex flex-wrap gap-2">
-                            <span className="px-2.5 py-1 rounded bg-[#0c1a2e]/90 backdrop-blur-md text-[#00aeef] border border-[#00aeef]/40 text-[11px] font-bold uppercase tracking-wider">
-                              {event.category}
-                            </span>
-                            {event.awardWon && (
-                              <span className="px-2.5 py-1 rounded bg-amber-400 text-[#0c1a2e] text-[11px] font-bold uppercase tracking-wider flex items-center gap-1 shadow">
-                                <Trophy className="w-3 h-3" />
-                                Award Winner
-                              </span>
-                            )}
-                            {event.id === 'juba-auto-show' && (
-                              <span className="px-2.5 py-1 rounded bg-[#00aeef] text-[#0c1a2e] text-[11px] font-bold uppercase tracking-wider flex items-center gap-1 shadow">
-                                <Sparkles className="w-3 h-3" />
-                                CBC Inception Flagship
-                              </span>
-                            )}
-                            {isAttended && (
-                              <span className="px-2.5 py-1 rounded bg-emerald-500 text-white text-[11px] font-bold uppercase tracking-wider">
-                                CBC Executive Delegation
-                              </span>
+                        return (
+                          <div>
+                            <div className="relative h-56 sm:h-64 w-full overflow-hidden bg-slate-900 group/image">
+                              <img
+                                src={currentImage}
+                                alt={event.title}
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                loading="lazy"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-[#0c1a2e] via-[#0c1a2e]/50 to-transparent"></div>
+
+                              {/* Category & Status Badges */}
+                              <div className="absolute top-4 left-4 right-4 flex flex-wrap items-center justify-between gap-2 z-10">
+                                <div className="flex flex-wrap gap-2">
+                                  <span className="px-2.5 py-1 rounded bg-[#0c1a2e]/90 backdrop-blur-md text-[#00aeef] border border-[#00aeef]/40 text-[11px] font-bold uppercase tracking-wider">
+                                    {event.category}
+                                  </span>
+                                  {event.awardWon && (
+                                    <span className="px-2.5 py-1 rounded bg-amber-400 text-[#0c1a2e] text-[11px] font-bold uppercase tracking-wider flex items-center gap-1 shadow">
+                                      <Trophy className="w-3 h-3" />
+                                      Award Winner
+                                    </span>
+                                  )}
+                                  {event.id === 'juba-auto-show' && (
+                                    <span className="px-2.5 py-1 rounded bg-[#00aeef] text-[#0c1a2e] text-[11px] font-bold uppercase tracking-wider flex items-center gap-1 shadow">
+                                      <Sparkles className="w-3 h-3" />
+                                      CBC Inception Flagship
+                                    </span>
+                                  )}
+                                  {isAttended && (
+                                    <span className="px-2.5 py-1 rounded bg-emerald-500 text-white text-[11px] font-bold uppercase tracking-wider">
+                                      CBC Executive Delegation
+                                    </span>
+                                  )}
+                                </div>
+
+                                {hasGallery && event.galleryImages && (
+                                  <span className="px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-slate-200 text-[10px] font-mono font-bold border border-white/20">
+                                    {currentImgIdx + 1} / {event.galleryImages.length}
+                                  </span>
+                                )}
+
+                                {isUpcoming && (
+                                  <button
+                                    onClick={(e) => downloadCalendarFile(event, e)}
+                                    title="Add to Calendar (.ics)"
+                                    className="p-2 rounded-lg bg-black/60 hover:bg-[#00aeef] text-white hover:text-[#0c1a2e] backdrop-blur-md border border-white/20 transition-all text-xs flex items-center gap-1"
+                                  >
+                                    <Download className="w-3.5 h-3.5" />
+                                    <span className="text-[10px] font-semibold hidden sm:inline">Add to Cal</span>
+                                  </button>
+                                )}
+                              </div>
+
+                              {/* Navigation Arrows for Gallery Banner */}
+                              {hasGallery && event.galleryImages && event.galleryImages.length > 1 && (
+                                <div className="absolute inset-y-0 inset-x-2 flex items-center justify-between opacity-0 group-hover/image:opacity-100 transition-opacity z-10 pointer-events-none">
+                                  <button
+                                    type="button"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      const nextIdx = (currentImgIdx - 1 + event.galleryImages!.length) % event.galleryImages!.length;
+                                      setCardActiveImages((prev) => ({ ...prev, [event.id]: nextIdx }));
+                                    }}
+                                    className="p-1.5 rounded-full bg-black/60 hover:bg-[#00aeef] text-white hover:text-[#0c1a2e] backdrop-blur-md transition-all pointer-events-auto shadow-md"
+                                    title="Previous Image"
+                                  >
+                                    <ChevronLeft className="w-4 h-4" />
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      const nextIdx = (currentImgIdx + 1) % event.galleryImages!.length;
+                                      setCardActiveImages((prev) => ({ ...prev, [event.id]: nextIdx }));
+                                    }}
+                                    className="p-1.5 rounded-full bg-black/60 hover:bg-[#00aeef] text-white hover:text-[#0c1a2e] backdrop-blur-md transition-all pointer-events-auto shadow-md"
+                                    title="Next Image"
+                                  >
+                                    <ChevronRight className="w-4 h-4" />
+                                  </button>
+                                </div>
+                              )}
+
+                              {/* Venue & Date Over Image */}
+                              <div className="absolute bottom-4 left-4 right-4 text-white space-y-1 z-10">
+                                {currentCaption && (
+                                  <div className="text-[11px] text-amber-300 font-semibold line-clamp-1 bg-black/50 backdrop-blur-xs px-2 py-0.5 rounded inline-block">
+                                    📸 {currentCaption}
+                                  </div>
+                                )}
+                                <div className="text-xs font-semibold text-[#00aeef] flex items-center gap-2">
+                                  <span>{event.date}</span>
+                                  <span>•</span>
+                                  <span>{event.time}</span>
+                                </div>
+                                <div className="text-xs text-slate-300 flex items-center gap-1.5">
+                                  <MapPin className="w-3.5 h-3.5 text-[#00aeef]" />
+                                  <span>{event.venue}, {event.address.includes('Nairobi') ? 'Nairobi, Kenya' : 'Juba, South Sudan'}</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Interactive Thumbnail Gallery Strip for Juba Auto Show */}
+                            {hasGallery && event.galleryImages && (
+                              <div className="px-5 pt-3 pb-2.5 bg-slate-50 border-b border-slate-200">
+                                <div className="flex items-center justify-between text-[11px] font-bold text-slate-600 mb-1.5">
+                                  <span className="flex items-center gap-1.5 text-[#0c1a2e]">
+                                    <Camera className="w-3.5 h-3.5 text-[#00aeef]" />
+                                    <span>Auto Show Photography ({event.galleryImages.length} Shots)</span>
+                                  </span>
+                                  <span className="text-[#00aeef] font-semibold text-[10px]">
+                                    {event.galleryImages[currentImgIdx]?.category || 'Click to switch'}
+                                  </span>
+                                </div>
+                                <div className="flex items-center gap-2 overflow-x-auto pb-1">
+                                  {event.galleryImages.map((gImg, gIdx) => {
+                                    const isThumbActive = currentImgIdx === gIdx;
+                                    return (
+                                      <button
+                                        key={gIdx}
+                                        type="button"
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          setCardActiveImages((prev) => ({ ...prev, [event.id]: gIdx }));
+                                        }}
+                                        className={`relative rounded-lg overflow-hidden shrink-0 border-2 transition-all cursor-pointer ${
+                                          isThumbActive
+                                            ? 'border-[#00aeef] ring-2 ring-[#00aeef]/40 scale-105 shadow-md'
+                                            : 'border-slate-300 hover:border-slate-400 opacity-70 hover:opacity-100'
+                                        }`}
+                                        style={{ width: '58px', height: '38px' }}
+                                        title={gImg.caption}
+                                      >
+                                        <img
+                                          src={gImg.url}
+                                          alt={gImg.caption}
+                                          className="w-full h-full object-cover"
+                                        />
+                                      </button>
+                                    );
+                                  })}
+                                </div>
+                              </div>
                             )}
                           </div>
-
-                          {isUpcoming && (
-                            <button
-                              onClick={(e) => downloadCalendarFile(event, e)}
-                              title="Add to Calendar (.ics)"
-                              className="p-2 rounded-lg bg-black/60 hover:bg-[#00aeef] text-white hover:text-[#0c1a2e] backdrop-blur-md border border-white/20 transition-all text-xs flex items-center gap-1"
-                            >
-                              <Download className="w-3.5 h-3.5" />
-                              <span className="text-[10px] font-semibold hidden sm:inline">Add to Cal</span>
-                            </button>
-                          )}
-                        </div>
-
-                        {/* Venue & Date Over Image */}
-                        <div className="absolute bottom-4 left-4 right-4 text-white space-y-1">
-                          <div className="text-xs font-semibold text-[#00aeef] flex items-center gap-2">
-                            <span>{event.date}</span>
-                            <span>•</span>
-                            <span>{event.time}</span>
-                          </div>
-                          <div className="text-xs text-slate-300 flex items-center gap-1.5">
-                            <MapPin className="w-3.5 h-3.5 text-[#00aeef]" />
-                            <span>{event.venue}, {event.address.includes('Nairobi') ? 'Nairobi, Kenya' : 'Juba, South Sudan'}</span>
-                          </div>
-                        </div>
-                      </div>
+                        );
+                      })()}
 
                       {/* Body Content */}
                       <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
@@ -593,11 +691,19 @@ END:VCALENDAR`;
                             </button>
                           ) : isDone ? (
                             <button
-                              onClick={() => onNavigateToGallery ? onNavigateToGallery() : window.open(CBC_PIXIESET_URL, '_blank')}
+                              onClick={() => {
+                                if (event.galleryImages && event.galleryImages.length > 0) {
+                                  onViewEventDetails(event);
+                                } else if (onNavigateToGallery) {
+                                  onNavigateToGallery();
+                                } else {
+                                  window.open(CBC_PIXIESET_URL, '_blank');
+                                }
+                              }}
                               className="py-2.5 px-3 rounded-lg bg-[#0c1a2e] hover:bg-[#152843] text-white font-bold text-xs uppercase tracking-wider transition-all text-center flex items-center justify-center gap-1.5"
                             >
                               <Camera className="w-3.5 h-3.5 text-[#00aeef]" />
-                              <span>View Gallery Photos</span>
+                              <span>{event.galleryImages ? `View Photos (${event.galleryImages.length})` : 'View Gallery Photos'}</span>
                             </button>
                           ) : (
                             <button

@@ -63,6 +63,10 @@ export const GALLERY_SLOT_MAP: Record<string, string> = {
   'taban-deng-gai': 'taban-deng-gai',
   'milestone-2-allah-jabu': 'allah-jabu',
   'allah-jabu': 'allah-jabu',
+  'dignitary-mandela-mgurush': 'mgurush-launch',
+  'dignitary-wani-igga': 'wani-igga',
+  'dignitary-taban-deng-gai': 'taban-deng-gai',
+  'dignitary-mandela-allah-jabu': 'allah-jabu',
 };
 
 /**

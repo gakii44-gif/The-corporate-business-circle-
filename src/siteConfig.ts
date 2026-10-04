@@ -14,6 +14,7 @@ export const SECTIONS = {
   whyCbc: true,
   events: true,
   eventVideo: false,            // Video / broadcast section
+  announcements: true,         // Announcements & Special Offers (Capital FM Free Advert Campaign, etc.)
   gallery: true,
   sectors: false,
   insights: false,

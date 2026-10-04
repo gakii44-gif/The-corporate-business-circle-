@@ -560,9 +560,36 @@ export const PAST_EVENTS: EventItem[] = [
     fee: 'Concluded / Inception Hallmark',
     capacity: '2,000+ Attendees, 35+ Dealerships & Heavy Machinery Exhibitors',
     seatsLeft: 0,
-    image: '/assets/gallery/juba-autoshow-press-briefing.jpg',
+    image: '/assets/juba-autoshow/autoshow-organizers-2nd-edition.jpg',
     description:
       'The landmark flagship gathering where The Corporate Business Circle was born in 2022. Running consecutively from 2022 through 2025, the Juba Auto Show connects automobile lovers, leading car dealerships, commercial machinery suppliers (including David Machinery and LTA), corporate fleet operators, and financial institutions for an electrifying showcase of modern vehicle engineering, supercars, off-road buggies, and commercial fleet trade deals.',
+    galleryImages: [
+      {
+        url: '/assets/juba-autoshow/autoshow-organizers-2nd-edition.jpg',
+        caption: 'Welcome to the 2nd Edition of Juba Auto Show - Organizing Team & Sponsor Stage Billboard',
+        category: 'Organizing Committee & Sponsors',
+      },
+      {
+        url: '/assets/juba-autoshow/autoshow-blue-jeep.jpg',
+        caption: 'Juba Auto Show 4x4 Off-Road Exhibition - Lifted Electric-Blue Jeep Showcase with Mandela Nelson',
+        category: '4x4 Off-Road Exhibition',
+      },
+      {
+        url: '/assets/juba-autoshow/autoshow-street-convoy.jpg',
+        caption: 'Juba Auto Show City Motorcade & Street Convoy - Custom Jeep & Buggy Parade under Juba City Council Billboard',
+        category: 'Street Motorcade Convoy',
+      },
+      {
+        url: '/assets/juba-autoshow/autoshow-courtyard-exhibition.jpg',
+        caption: 'Juba Auto Show Courtyard Vehicle Exhibition - Supercars & Off-Road Buggy Showcase at Venue',
+        category: 'Courtyard Exhibition',
+      },
+      {
+        url: '/assets/gallery/juba-autoshow-press-briefing.jpg',
+        caption: 'Official Promotional Flier & Press Briefing Session at Pyramid Continental Hotel',
+        category: 'Official Session Graphic',
+      },
+    ],
     agenda: [
       { time: 'Annual Series', activity: 'Executive Dealership Ribbon Cutting, Fleet Showcase & Commercial Tenders' },
       { time: 'Exhibition', activity: 'Supercar & Buggy City Cruise, Sound Off & Automotive Enthusiast Parade' },

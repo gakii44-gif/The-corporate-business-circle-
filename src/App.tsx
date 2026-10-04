@@ -11,6 +11,7 @@ import { DesignPrintingShowcase } from './components/DesignPrintingShowcase';
 import { WhyCBCSection } from './components/WhyCBCSection';
 import { EventsSection } from './components/EventsSection';
 import { EventVideoSection } from './components/EventVideoSection';
+import { AnnouncementsSection } from './components/AnnouncementsSection';
 import { PartnersSection } from './components/PartnersSection';
 import { DignitaryMilestonesSection } from './components/DignitaryMilestonesSection';
 import { GallerySection } from './components/GallerySection';
@@ -90,6 +91,7 @@ export default function App() {
         'partners',
         'why-cbc', 
         'events', 
+        'announcements',
         'event-highlights',
         'gallery', 
         'sectors', 
@@ -269,6 +271,10 @@ export default function App() {
         {SECTIONS.events && (<EventsSection
           onRegisterEvent={handleOpenRegistration}
           onViewEventDetails={handleOpenEventDetails}
+        />)}
+
+        {(SECTIONS as any).announcements && (<AnnouncementsSection
+          onOpenContact={() => handleNavigate('contact')}
         />)}
 
         {SECTIONS.eventVideo && (<EventVideoSection

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { EventItem } from '../types';
 import { 
   X, 
@@ -12,7 +12,11 @@ import {
   Building,
   Sparkles,
   Film,
-  ExternalLink
+  ExternalLink,
+  Camera,
+  Maximize2,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 
 interface EventDetailsModalProps {
@@ -28,6 +32,8 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
   onClose,
   onRegister,
 }) => {
+  const [selectedPhoto, setSelectedPhoto] = useState<{ url: string; caption: string; category?: string } | null>(null);
+
   if (!isOpen || !event) return null;
 
   return (
@@ -240,6 +246,70 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
             </div>
           )}
 
+          {/* Official Event Photography Gallery (Auto Show & Event Inceptions) */}
+          {event.galleryImages && event.galleryImages.length > 0 && (
+            <div className="space-y-4 pt-2">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                  <h4 className="text-sm font-bold uppercase tracking-wider text-[#0c1a2e] flex items-center gap-2">
+                    <Camera className="w-4 h-4 text-[#00aeef]" />
+                    <span>Official Event Photography Archive ({event.galleryImages.length} Photographs)</span>
+                  </h4>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    Authentic moments from the Juba Auto Show editions and landmark commercial expos organized by CBC.
+                  </p>
+                </div>
+                <span className="px-2.5 py-1 rounded bg-[#00aeef]/10 text-[#00aeef] text-[10px] font-bold uppercase tracking-wider border border-[#00aeef]/20 shrink-0 self-start sm:self-auto">
+                  Inception Archives
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {event.galleryImages.map((img, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => setSelectedPhoto(img)}
+                    className="group relative rounded-xl overflow-hidden bg-slate-900 border border-slate-200 hover:border-[#00aeef] transition-all shadow cursor-pointer flex flex-col"
+                  >
+                    <div className="relative aspect-video w-full overflow-hidden bg-slate-950">
+                      <img
+                        src={img.url}
+                        alt={img.caption}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
+
+                      {/* Category Badge */}
+                      {img.category && (
+                        <div className="absolute top-2.5 left-2.5 z-10">
+                          <span className="px-2 py-0.5 rounded bg-[#0c1a2e]/90 text-[#00aeef] text-[9px] font-bold uppercase tracking-wider backdrop-blur-sm border border-[#00aeef]/30 shadow">
+                            {img.category}
+                          </span>
+                        </div>
+                      )}
+
+                      {/* Zoom Trigger Icon */}
+                      <div className="absolute top-2.5 right-2.5 z-10 opacity-0 group-hover:opacity-100 transition-opacity p-1.5 rounded-lg bg-[#00aeef] text-[#0c1a2e] shadow-lg">
+                        <Maximize2 className="w-3.5 h-3.5" />
+                      </div>
+                    </div>
+
+                    {/* Caption */}
+                    <div className="p-3 bg-white border-t border-slate-100">
+                      <p className="text-xs text-slate-800 font-semibold leading-snug group-hover:text-[#00aeef] transition-colors">
+                        {img.caption}
+                      </p>
+                      <span className="text-[10px] text-slate-400 mt-1 block font-medium">
+                        Click to expand high-resolution photograph
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Action Footer */}
           <div className="pt-4 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="text-xs text-slate-500">
@@ -290,6 +360,49 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Expanded Photo Inspection Lightbox */}
+      {selectedPhoto && (
+        <div
+          className="fixed inset-0 z-60 bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
+          onClick={() => setSelectedPhoto(null)}
+        >
+          <div
+            className="relative max-w-4xl w-full bg-[#0c1a2e] rounded-2xl overflow-hidden shadow-2xl border border-slate-700"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between p-4 border-b border-slate-800 bg-[#081322]">
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-1 rounded bg-[#00aeef]/20 text-[#00aeef] text-[10px] font-bold uppercase tracking-wider border border-[#00aeef]/30">
+                  {selectedPhoto.category || 'Event Archive'}
+                </span>
+                <span className="text-xs text-slate-300 font-semibold truncate max-w-md">
+                  {selectedPhoto.caption}
+                </span>
+              </div>
+              <button
+                onClick={() => setSelectedPhoto(null)}
+                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="p-2 sm:p-4 bg-black flex items-center justify-center max-h-[70vh]">
+              <img
+                src={selectedPhoto.url}
+                alt={selectedPhoto.caption}
+                className="max-h-[65vh] w-auto object-contain mx-auto rounded-lg"
+              />
+            </div>
+
+            <div className="p-4 bg-[#081322] border-t border-slate-800 flex items-center justify-between text-xs text-slate-300">
+              <span>{selectedPhoto.caption}</span>
+              <span className="text-[#00aeef] font-semibold">Juba Auto Show Official Record</span>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

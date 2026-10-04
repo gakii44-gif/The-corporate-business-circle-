@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CBC_CONTACT } from '../data/mockData';
 import { PrintableVisualAid } from './PrintableVisualAid';
+import { PrintWorksPortfolio } from './PrintWorksPortfolio';
 import { 
   Palette, 
   Printer, 
@@ -796,6 +797,9 @@ export const DesignPrintingShowcase: React.FC<DesignPrintingShowcaseProps> = ({
             </div>
           ))}
         </div>
+
+        {/* PRINT WORKS PORTFOLIO COMPONENT */}
+        <PrintWorksPortfolio onRequestQuote={onRequestQuote} />
 
         {/* GRAPHIC WORK IMPRESSIONS DONE BY CBC CREATIVE TEAM */}
         <div id="creative-impressions" className="mb-16 pt-10 border-t border-slate-200">

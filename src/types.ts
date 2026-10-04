@@ -35,6 +35,11 @@ export interface EventItem {
   youtubeId?: string;
   videoTitle?: string;
   videoSource?: string;
+  galleryImages?: {
+    url: string;
+    caption: string;
+    category?: string;
+  }[];
 }
 
 export interface MembershipTier {
