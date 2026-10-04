@@ -17,38 +17,55 @@ import {
   Leaf,
   HeartPulse,
   Users2,
-  Camera,
   Car
 } from 'lucide-react';
 
-const JUBA_AUTO_SHOW_PHOTOS = [
+interface MilestoneHeritage {
+  id: string;
+  year: string;
+  title: string;
+  tag: string;
+  caption: string;
+  stat: string;
+  statLabel: string;
+}
+
+const JUBA_AUTO_SHOW_MILESTONES: MilestoneHeritage[] = [
   {
-    id: 'organizers-2nd-edition',
-    url: '/assets/juba-autoshow/autoshow-organizers-2nd-edition.jpg',
-    title: 'Welcome to the 2nd Edition of Juba Auto Show',
-    tag: 'Organizers & Sponsors',
-    caption: 'Official 2nd Edition stage banner with organizers, sponsor delegates (LTA, David Machinery, Liquid, Capital FM, Bros), and partners in Juba.',
+    id: 'inception-2022',
+    year: '2022',
+    title: 'The Juba Auto Show Inception',
+    tag: 'Foundational Landmark',
+    caption: 'CBC was born in 2022 with the landmark Juba Auto Show, uniting automobile enthusiasts, top car dealerships, and fleet operators in an unprecedented networking showcase.',
+    stat: '2022',
+    statLabel: 'Origin Year',
   },
   {
-    id: 'street-convoy',
-    url: '/assets/juba-autoshow/autoshow-street-convoy.jpg',
-    title: 'Juba Auto Show City Motorcade Convoy',
-    tag: 'Street Parade',
-    caption: 'Custom lifted matte-black Jeep Wrangler, high-performance buggy UTV, and muscle car convoy rolling through Juba.',
+    id: 'registration-2023',
+    year: '2023',
+    title: 'Official Corporate Incorporation',
+    tag: 'Legal Registration',
+    caption: 'Officially registered on 20th September 2023, Corporate Business Circle spread its wings to serve corporate, diplomatic, and sovereign entities across South Sudan and the East African Community.',
+    stat: '20 Sept 2023',
+    statLabel: 'Incorporated',
   },
   {
-    id: 'courtyard-exhibition',
-    url: '/assets/juba-autoshow/autoshow-courtyard-exhibition.jpg',
-    title: 'Exotic Vehicles & Supercars Showcase',
-    tag: 'Courtyard Display',
-    caption: 'Dodge Challenger, lifted off-road Jeep, and buggy display under South Sudan flags at the exhibition venue.',
+    id: 'commercial-fleet-expansion',
+    year: '2024',
+    title: 'Commercial Machinery & Fleet Corridors',
+    tag: 'B2B Trade Network',
+    caption: 'Partnered with prominent commercial machinery and automotive heavyweights (including David Machinery and LTA) to introduce asset financing and regional fleet procurement.',
+    stat: '35+',
+    statLabel: 'Corporate Partners',
   },
   {
-    id: 'blue-jeep',
-    url: '/assets/juba-autoshow/autoshow-blue-jeep.jpg',
-    title: 'Custom Lifted 4x4 Off-Road Feature',
-    tag: 'Lifted 4x4 Showcase',
-    caption: 'Custom lifted electric-blue Jeep 4x4 with off-road suspension on the official outdoor showcase grounds.',
+    id: 'convention-excellence',
+    year: '2026',
+    title: 'Convention Organizer of the Year',
+    tag: 'Sovereign Summitry',
+    caption: 'Delivered turnkey execution of the 7th Global Logistics Convention 2026, officially recognized as "The Event Organizer of The Global Logistics Convention 2026" at Pyramid Continental Hotel.',
+    stat: 'Award Winner',
+    statLabel: 'GLC 2026 Organizer',
   },
 ];
 
@@ -65,8 +82,8 @@ export const About: React.FC<AboutProps> = ({
   onPartnerWithUs,
   onOpenEhsModal,
 }) => {
-  const [activeAutoShowIndex, setActiveAutoShowIndex] = useState(0);
-  const currentAutoShowPhoto = JUBA_AUTO_SHOW_PHOTOS[activeAutoShowIndex];
+  const [activeMilestoneIndex, setActiveMilestoneIndex] = useState(0);
+  const currentMilestone = JUBA_AUTO_SHOW_MILESTONES[activeMilestoneIndex];
 
   return (
     <section id="about" className="py-20 lg:py-28 bg-[#f8f9fb] text-slate-900 border-t border-slate-200">
@@ -159,76 +176,72 @@ export const About: React.FC<AboutProps> = ({
         {/* Company Background & Registration Story */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
           <div className="lg:col-span-6 relative">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-slate-900">
-              {/* Active Juba Auto Show Photograph */}
-              <div className="relative h-[360px] sm:h-[420px] w-full overflow-hidden">
-                <img
-                  src={currentAutoShowPhoto.url}
-                  alt={currentAutoShowPhoto.title}
-                  className="w-full h-full object-cover transition-all duration-500"
-                  loading="eager"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0c1a2e]/95 via-[#0c1a2e]/25 to-transparent"></div>
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-700/80 bg-[#0c1a2e] text-white">
+              {/* Active Milestone Card */}
+              <div className="relative p-6 sm:p-8 min-h-[360px] flex flex-col justify-between bg-gradient-to-br from-[#0c1a2e] via-[#091629] to-[#060e1b]">
+                {/* Background Ambience Accent */}
+                <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-[#00aeef]/10 blur-3xl pointer-events-none"></div>
 
-                {/* Top Badge: Juba Auto Show Inception */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0c1a2e]/90 border border-[#00aeef]/60 text-[#00aeef] text-xs font-bold uppercase tracking-wider backdrop-blur-md shadow">
-                    <Car className="w-3.5 h-3.5 text-[#00aeef]" />
-                    <span>Juba Auto Show (Founded in 2022)</span>
-                  </span>
-
-                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-black/75 border border-white/20 text-white text-[11px] font-mono backdrop-blur-md">
-                    <Camera className="w-3 h-3 text-[#00aeef]" />
-                    <span>{activeAutoShowIndex + 1} / {JUBA_AUTO_SHOW_PHOTOS.length}</span>
-                  </span>
-                </div>
-                
-                {/* Bottom Caption Overlay */}
-                <div className="absolute bottom-4 left-4 right-4 text-white p-3.5 sm:p-4 bg-[#0c1a2e]/90 backdrop-blur-md rounded-xl border border-slate-700/80 space-y-1">
+                <div className="relative z-10 space-y-4">
+                  {/* Top Badge */}
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] sm:text-xs uppercase tracking-widest text-[#00aeef] font-bold">
-                      Inception Landmark • {currentAutoShowPhoto.tag}
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#112239] border border-[#00aeef]/50 text-[#00aeef] text-xs font-bold uppercase tracking-wider">
+                      <Car className="w-3.5 h-3.5 text-[#00aeef]" />
+                      <span>{currentMilestone.tag}</span>
                     </span>
-                    <span className="text-[10px] text-slate-400 font-medium">Click thumbnails below</span>
+
+                    <span className="text-2xl font-serif font-bold text-[#00aeef]">
+                      {currentMilestone.year}
+                    </span>
                   </div>
-                  <h4 className="text-sm sm:text-base font-serif font-bold text-white leading-snug">
-                    {currentAutoShowPhoto.title}
+
+                  <h4 className="text-xl sm:text-2xl font-serif font-bold text-white leading-snug">
+                    {currentMilestone.title}
                   </h4>
-                  <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed line-clamp-2">
-                    {currentAutoShowPhoto.caption}
+
+                  <p className="text-sm text-slate-300 leading-relaxed font-normal">
+                    {currentMilestone.caption}
                   </p>
+                </div>
+
+                {/* Key Stat / Anchor Callout */}
+                <div className="relative z-10 mt-6 pt-4 border-t border-slate-800 flex items-center justify-between">
+                  <div>
+                    <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                      {currentMilestone.statLabel}
+                    </span>
+                    <span className="text-lg font-serif font-bold text-white mt-0.5 block">
+                      {currentMilestone.stat}
+                    </span>
+                  </div>
+
+                  <span className="text-xs text-slate-400 font-medium">
+                    Milestone {activeMilestoneIndex + 1} of {JUBA_AUTO_SHOW_MILESTONES.length}
+                  </span>
                 </div>
               </div>
 
-              {/* 4 Interactive Thumbnail Strip */}
-              <div className="p-3 bg-[#0a1526] border-t border-slate-800 grid grid-cols-4 gap-2">
-                {JUBA_AUTO_SHOW_PHOTOS.map((photo, idx) => {
-                  const isActive = idx === activeAutoShowIndex;
+              {/* Interactive Timeline Tabs */}
+              <div className="p-3 bg-[#081220] border-t border-slate-800 grid grid-cols-4 gap-2">
+                {JUBA_AUTO_SHOW_MILESTONES.map((m, idx) => {
+                  const isActive = idx === activeMilestoneIndex;
                   return (
                     <button
-                      key={photo.id}
+                      key={m.id}
                       type="button"
-                      onClick={() => setActiveAutoShowIndex(idx)}
-                      className={`group relative rounded-lg overflow-hidden border-2 text-left transition-all ${
+                      onClick={() => setActiveMilestoneIndex(idx)}
+                      className={`p-2.5 rounded-lg border text-center transition-all ${
                         isActive 
-                          ? 'border-[#00aeef] ring-2 ring-[#00aeef]/40 scale-[1.02]' 
-                          : 'border-slate-800 hover:border-slate-600 opacity-70 hover:opacity-100'
+                          ? 'bg-[#112239] border-[#00aeef] text-white shadow-md' 
+                          : 'bg-[#0a1526]/60 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-200'
                       }`}
-                      aria-label={`View ${photo.title}`}
                     >
-                      <div className="h-14 sm:h-16 w-full relative">
-                        <img
-                          src={photo.url}
-                          alt={photo.tag}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                        />
-                        <div className={`absolute inset-0 transition-colors ${isActive ? 'bg-[#00aeef]/10' : 'bg-black/30'}`} />
-                      </div>
-                      <div className="p-1 bg-[#0c1a2e] text-center">
-                        <span className={`block text-[9px] sm:text-[10px] font-semibold truncate ${isActive ? 'text-[#00aeef]' : 'text-slate-400'}`}>
-                          {photo.tag}
-                        </span>
-                      </div>
+                      <span className={`block text-xs font-bold font-mono ${isActive ? 'text-[#00aeef]' : 'text-slate-400'}`}>
+                        {m.year}
+                      </span>
+                      <span className="block text-[10px] font-medium truncate mt-0.5">
+                        {m.tag.split(' ')[0]}
+                      </span>
                     </button>
                   );
                 })}

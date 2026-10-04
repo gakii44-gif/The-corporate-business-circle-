@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { CLIENTS_PREVIEW_COUNT } from '../siteConfig';
 import { CBC_CLIENT_CATEGORIES, CBC_CLIENTS_LIST } from '../data/clientsData';
 import { CBCClient } from '../types';
 import { 
@@ -45,6 +46,7 @@ export const PartnersSection: React.FC<PartnersSectionProps> = ({
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [viewMode, setViewMode] = useState<'grid' | 'grouped'>('grid');
   const [failedLogos, setFailedLogos] = useState<Record<string, boolean>>({});
+  const [showAllClients, setShowAllClients] = useState(false);
 
   const handlePartnerClick = onPartnerWithUs || onOpenPartnershipInquiry;
   const handleContactClick = onContactUs || onDownloadProspectus;
@@ -259,7 +261,7 @@ export const PartnersSection: React.FC<PartnersSectionProps> = ({
         {/* View Mode 1: Unified Logo Card Grid */}
         {viewMode === 'grid' && (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5 mb-16">
-            {filteredClients.map((client) => {
+            {(showAllClients || searchTerm || activeCategory !== 'all' ? filteredClients : filteredClients.slice(0, CLIENTS_PREVIEW_COUNT)).map((client) => {
               const CategoryIcon = getCategoryIcon(client.categoryId);
               const hasValidLogo = client.logo && !failedLogos[client.id];
               const initials = getInitials(client.name);
@@ -332,6 +334,17 @@ export const PartnersSection: React.FC<PartnersSectionProps> = ({
                 </div>
               );
             })}
+          </div>
+        )}
+
+        {viewMode === 'grid' && !showAllClients && !searchTerm && activeCategory === 'all' && filteredClients.length > CLIENTS_PREVIEW_COUNT && (
+          <div className="text-center -mt-8 mb-16">
+            <button
+              onClick={() => setShowAllClients(true)}
+              className="px-6 py-3 rounded-lg bg-[#0c1a2e] hover:bg-[#13294a] text-white font-semibold text-xs uppercase tracking-wider transition-all shadow"
+            >
+              Show all {filteredClients.length} clients
+            </button>
           </div>
         )}
 

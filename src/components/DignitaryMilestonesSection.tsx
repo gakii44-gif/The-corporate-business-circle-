@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { CBC_DIGNITARY_MILESTONES, DignitaryMilestone } from '../data/mockData';
 import { 
   Landmark, 
@@ -7,15 +7,17 @@ import {
   Sparkles, 
   Maximize2, 
   ShieldCheck, 
-  ChevronRight,
-  ExternalLink,
-  Award,
-  Users,
-  Upload,
-  Shield
+  ChevronRight, 
+  ExternalLink, 
+  Award, 
+  Users, 
+  Upload, 
+  Shield,
+  CheckCircle2,
+  Loader2
 } from 'lucide-react';
 import { DignitaryPhotoDisplay } from './DignitaryPhotoDisplay';
-import { getDignitaryPhotoUrl } from '../utils/dignitaryPhotos';
+import { saveDignitaryFile, matchFileToSlotKey } from '../utils/dignitaryPhotos';
 
 interface DignitaryMilestonesSectionProps {
   onOpenLightbox?: (photoUrl: string, title: string) => void;
@@ -31,9 +33,45 @@ export const DignitaryMilestonesSection: React.FC<DignitaryMilestonesSectionProp
   const [selectedMilestone, setSelectedMilestone] = useState<DignitaryMilestone>(
     CBC_DIGNITARY_MILESTONES[1] // Default to #2: Mandela Nelson with Hon Allah Jabu
   );
+  const [uploadStatus, setUploadStatus] = useState<string | null>(null);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const batchInputRef = useRef<HTMLInputElement>(null);
 
   const getSlotKey = (id: string) => {
+    if (id.includes('taban-deng-gai')) return 'taban-deng-gai';
+    if (id.includes('allah-jabu')) return 'allah-jabu';
+    if (id.includes('mgurush')) return 'mgurush-launch';
+    if (id.includes('wani-igga')) return 'wani-igga';
     return id.replace('cbc-team-', '').replace('mandela-nelson-', '');
+  };
+
+  const handleBatchUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+
+    try {
+      setIsProcessing(true);
+      setUploadStatus('Synchronizing authentic archival photographs...');
+      let uploadedCount = 0;
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const slotKey = matchFileToSlotKey(file, i);
+        if (slotKey) {
+          await saveDignitaryFile(slotKey, file);
+          uploadedCount++;
+        }
+      }
+
+      setUploadStatus(`Successfully synchronized ${uploadedCount} authentic archival photograph${uploadedCount === 1 ? '' : 's'}!`);
+      setTimeout(() => setUploadStatus(null), 6000);
+    } catch (err) {
+      console.error('Batch upload error:', err);
+      setUploadStatus('Error uploading files. Please try again.');
+    } finally {
+      setIsProcessing(false);
+      if (batchInputRef.current) batchInputRef.current.value = '';
+    }
   };
 
   return (
@@ -49,7 +87,7 @@ export const DignitaryMilestonesSection: React.FC<DignitaryMilestonesSectionProp
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center space-y-4 mb-16">
+        <div className="max-w-3xl mx-auto text-center space-y-4 mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#112239] border border-slate-700 text-xs font-bold uppercase tracking-wider text-[#00aeef]">
             <Landmark className="w-4 h-4 text-[#00aeef]" />
             <span>High-Level Leadership & Sovereign Engagements</span>
@@ -61,6 +99,49 @@ export const DignitaryMilestonesSection: React.FC<DignitaryMilestonesSectionProp
             Historic photographic archive of high-level state audiences, municipal infrastructure presentations, 
             and nationwide FinTech launches led by Corporate Business Circle executives in Juba, South Sudan.
           </p>
+        </div>
+
+        {/* Archival Photo Upload Action Banner */}
+        <div className="mb-12 p-5 rounded-2xl bg-[#0d1c31] border border-[#00aeef]/40 shadow-xl flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3.5">
+            <div className="w-12 h-12 rounded-xl bg-[#00aeef]/20 border border-[#00aeef]/40 flex items-center justify-center text-[#00aeef] shrink-0">
+              {isProcessing ? <Loader2 className="w-6 h-6 animate-spin" /> : <Upload className="w-6 h-6" />}
+            </div>
+            <div>
+              <h4 className="text-sm sm:text-base font-serif font-bold text-white">
+                Archival Photograph Synchronization
+              </h4>
+              <p className="text-xs text-slate-300">
+                Upload your official event photographs directly. Auto-assigns to the 4 sovereign milestone records.
+              </p>
+              {uploadStatus && (
+                <div className="mt-1.5 flex items-center gap-1.5 text-xs text-emerald-400 font-semibold">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>{uploadStatus}</span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3 w-full md:w-auto">
+            <input
+              ref={batchInputRef}
+              type="file"
+              multiple
+              accept="image/*"
+              className="hidden"
+              onChange={handleBatchUpload}
+            />
+            <button
+              type="button"
+              disabled={isProcessing}
+              onClick={() => batchInputRef.current?.click()}
+              className="w-full md:w-auto px-5 py-2.5 rounded-xl bg-[#00aeef] hover:bg-[#38bdf8] text-[#0c1a2e] font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-[#00aeef]/20 disabled:opacity-50"
+            >
+              <Upload className="w-4 h-4" />
+              <span>Select / Upload Archival Photos</span>
+            </button>
+          </div>
         </div>
 
         {/* Featured Showcase Card */}

@@ -32,6 +32,7 @@ import { EhsPolicyModal } from './components/EhsPolicyModal';
 
 import { EventItem, MembershipTier, InsightArticle } from './types';
 import { GalleryPhoto, GALLERY_PHOTOS } from './data/pixiesetPhotos';
+import { SECTIONS } from './siteConfig';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -172,7 +173,7 @@ export default function App() {
           onOpenEventRegistration={handleOpenRegistration}
           onNavigateToEvents={() => handleNavigate('events')}
           onNavigateToAbout={() => handleNavigate('about')}
-          onNavigateToMilestones={() => handleNavigate('dignitary-milestones')}
+          onNavigateToMilestones={() => handleNavigate('gallery')}
           onOpenLightbox={(photoUrl, title) => {
             const matchIndex = GALLERY_PHOTOS.findIndex(p => p.url === photoUrl);
             if (matchIndex >= 0) {
@@ -193,20 +194,20 @@ export default function App() {
           }}
         />
 
-        <ServicesSection
+        {SECTIONS.services && (<ServicesSection
           onSelectServiceForInquiry={(serviceName) => {
             handleNavigate('contact');
           }}
           onOpenProspectusModal={() => setIsProspectusModalOpen(true)}
-        />
+        />)}
 
-        <DesignPrintingShowcase
+        {SECTIONS.designPrinting && (<DesignPrintingShowcase
           onRequestQuote={(serviceTitle) => {
             handleNavigate('contact');
           }}
-        />
+        />)}
 
-        <About
+        {SECTIONS.about && (<About
           onOpenMembershipModal={() => {
             setSelectedMembershipTier(null);
             setIsMembershipModalOpen(true);
@@ -217,9 +218,9 @@ export default function App() {
             setIsMembershipModalOpen(true);
           }}
           onOpenEhsModal={() => setIsEhsModalOpen(true)}
-        />
+        />)}
 
-        <DignitaryMilestonesSection
+        {SECTIONS.dignitaryMilestones && (<DignitaryMilestonesSection
           onOpenLightbox={(photoUrl, title) => {
             const matchIndex = GALLERY_PHOTOS.findIndex(p => p.url === photoUrl);
             if (matchIndex >= 0) {
@@ -242,9 +243,9 @@ export default function App() {
           }}
           onNavigateToEvents={() => handleNavigate('events')}
           onNavigateToContact={() => handleNavigate('contact')}
-        />
+        />)}
 
-        <PartnersSection
+        {SECTIONS.partners && (<PartnersSection
           onOpenPartnershipInquiry={() => {
             setSelectedMembershipTier(null);
             setIsMembershipModalOpen(true);
@@ -255,42 +256,42 @@ export default function App() {
             setIsMembershipModalOpen(true);
           }}
           onContactUs={() => handleNavigate('contact')}
-        />
+        />)}
 
-        <WhyCBCSection
+        {SECTIONS.whyCbc && (<WhyCBCSection
           onAttendEvent={() => handleNavigate('events')}
           onPartnerWithUs={() => {
             setSelectedMembershipTier(null);
             setIsMembershipModalOpen(true);
           }}
-        />
+        />)}
 
-        <EventsSection
+        {SECTIONS.events && (<EventsSection
           onRegisterEvent={handleOpenRegistration}
           onViewEventDetails={handleOpenEventDetails}
-        />
+        />)}
 
-        <EventVideoSection
+        {SECTIONS.eventVideo && (<EventVideoSection
           onRegisterInterest={() => {
             if (handleNavigate) handleNavigate('events');
           }}
           onOpenGallery={() => handleNavigate('gallery')}
-        />
+        />)}
 
-        <GallerySection onOpenLightbox={handleOpenLightbox} />
+        {SECTIONS.gallery && (<GallerySection onOpenLightbox={handleOpenLightbox} />)}
 
-        <SectorsSection
+        {SECTIONS.sectors && (<SectorsSection
           onOpenMembershipModal={() => {
             setSelectedMembershipTier(null);
             setIsMembershipModalOpen(true);
           }}
-        />
+        />)}
 
-        <InsightsSection onReadArticle={handleReadArticle} />
+        {SECTIONS.insights && (<InsightsSection onReadArticle={handleReadArticle} />)}
 
-        <ContactSection 
+        {SECTIONS.contact && (<ContactSection 
           onOpenPrivacyModal={() => setIsPrivacyModalOpen(true)}
-        />
+        />)}
       </main>
 
       {/* Footer */}

@@ -110,43 +110,56 @@ export const PhotoLightboxModal: React.FC<PhotoLightboxModalProps> = ({
       </button>
 
       {/* Main Image Container */}
-      <div className="relative max-w-5xl max-h-[80vh] flex items-center justify-center p-2">
+      <div className="relative max-w-5xl max-h-[75vh] flex items-center justify-center p-2">
         <img
           src={photo.urlFull || photo.url}
           alt={photo.title}
-          className="max-h-[75vh] max-w-full object-contain rounded-lg shadow-2xl border border-slate-800"
+          className="max-h-[70vh] max-w-full object-contain rounded-lg shadow-2xl border border-slate-800"
         />
       </div>
 
       {/* Bottom Info Bar */}
-      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 bg-gradient-to-t from-black/90 via-black/60 to-transparent z-20 text-center flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-300">
-        <div className="flex items-center gap-2">
-          <span className="px-2.5 py-1 rounded bg-[#00aeef]/20 border border-[#00aeef]/40 text-[#00aeef] font-bold uppercase text-[10px]">
-            {photo.category}
-          </span>
-          <span className="text-slate-400">• Collection: {photo.collection}</span>
-          <span className="text-slate-500 hidden sm:inline">• Archive: Corporate Business Circle</span>
-        </div>
+      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 bg-gradient-to-t from-black/95 via-black/80 to-transparent z-20 text-center flex flex-col gap-2.5 text-xs text-slate-300">
+        {photo.description && (
+          <div className="max-w-3xl mx-auto text-center text-slate-200 text-xs sm:text-sm font-medium line-clamp-2 px-4 py-1.5 rounded-lg bg-black/60 border border-slate-800">
+            {photo.description}
+          </div>
+        )}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            <span className="px-2.5 py-1 rounded bg-[#00aeef]/20 border border-[#00aeef]/40 text-[#00aeef] font-bold uppercase text-[10px]">
+              {photo.category}
+            </span>
+            {photo.eventDate && (
+              <span className="text-slate-300 flex items-center gap-1 text-[11px] bg-slate-900/80 px-2 py-0.5 rounded border border-slate-700">
+                <Calendar className="w-3 h-3 text-[#00aeef]" />
+                {photo.eventDate}
+              </span>
+            )}
+            <span className="text-slate-400">• Collection: {photo.collection}</span>
+            <span className="text-slate-500 hidden sm:inline">• Archive: Corporate Business Circle</span>
+          </div>
 
-        <div className="flex items-center gap-4">
-          <a
-            href={CBC_PIXIESET_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-[#00aeef] hover:underline font-semibold"
-          >
-            <span>View Full 470+ Album on Pixieset</span>
-            <ExternalLink className="w-3.5 h-3.5" />
-          </a>
-          <a
-            href={CBC_FACEBOOK_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-blue-400 hover:underline font-semibold"
-          >
-            <Facebook className="w-3.5 h-3.5" />
-            <span>Facebook Page</span>
-          </a>
+          <div className="flex items-center gap-4">
+            <a
+              href={CBC_PIXIESET_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-[#00aeef] hover:underline font-semibold"
+            >
+              <span>View Full 470+ Album on Pixieset</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+            <a
+              href={CBC_FACEBOOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-blue-400 hover:underline font-semibold"
+            >
+              <Facebook className="w-3.5 h-3.5" />
+              <span>Facebook Page</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>

@@ -80,7 +80,7 @@ export const DIGNITARY_SLOTS: DignitaryPhotoConfig[] = [
 /**
  * Match an uploaded file to a dignitary slot key based on its name or type
  */
-export function matchFileToSlotKey(file: File): string | null {
+export function matchFileToSlotKey(file: File, fallbackIndex?: number): string | null {
   const name = file.name.toLowerCase();
 
   // Video check
@@ -117,6 +117,11 @@ export const DEFAULT_DIGNITARY_PHOTOS: Record<string, string> = {
   'mgurush-launch': '/assets/dignitaries/mgurush-launch.jpg',
   'wani-igga': '/assets/dignitaries/wani-igga.jpg',
   'mandela-audience': '/assets/dignitaries/mandela-audience.jpg',
+  // Aliases: milestone ids / gallery ids resolve to these keys in Hero, Milestones & Gallery
+  'gen-taban-deng-gai': '/assets/dignitaries/taban-deng-gai.jpg',
+  'hon-allah-jabu': '/assets/dignitaries/allah-jabu.jpg',
+  'mgurush': '/assets/dignitaries/mgurush-launch.jpg',
+  'dr-james-wani-igga': '/assets/dignitaries/wani-igga.jpg',
 };
 
 /**

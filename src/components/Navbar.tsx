@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { SECTIONS } from '../siteConfig';
 import { Logo } from './Logo';
 import { CBC_CONTACT } from '../data/mockData';
 import { 
@@ -43,9 +44,10 @@ export const Navbar: React.FC<NavbarProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
+  const allNavLinks = [
     { id: 'about', label: 'About', mobileLabel: 'ABOUT CBC' },
     { id: 'services', label: 'Services', mobileLabel: 'SERVICES' },
+    { id: 'design-printing', label: 'Design & Print', mobileLabel: 'DESIGN & PRINT' },
     { id: 'dignitary-milestones', label: 'VIP Milestones', mobileLabel: 'VIP MILESTONES' },
     { id: 'partners', label: 'Clients & Network', mobileLabel: 'CLIENTS & NETWORK' },
     { id: 'events', label: 'Events', mobileLabel: 'EVENTS' },
@@ -54,6 +56,19 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'gallery', label: 'Gallery', mobileLabel: 'GALLERY' },
     { id: 'contact', label: 'Contact', mobileLabel: 'CONTACT' },
   ];
+  const visibleIds: Record<string, boolean> = {
+    about: SECTIONS.about,
+    services: SECTIONS.services,
+    'design-printing': SECTIONS.designPrinting,
+    'dignitary-milestones': SECTIONS.dignitaryMilestones,
+    partners: SECTIONS.partners,
+    events: SECTIONS.events,
+    'event-highlights': SECTIONS.eventVideo,
+    'why-cbc': SECTIONS.whyCbc,
+    gallery: SECTIONS.gallery,
+    contact: SECTIONS.contact,
+  };
+  const navLinks = allNavLinks.filter((l) => visibleIds[l.id] !== false);
 
   const handleNavClick = (id: string) => {
     onNavigate(id);

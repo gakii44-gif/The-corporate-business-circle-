@@ -387,7 +387,7 @@ export const ATTENDED_EVENTS: EventItem[] = [
     fee: 'Executive Delegation Representation',
     capacity: 'Regional C-Suite Delegation',
     seatsLeft: 0,
-    image: '/assets/events/mandela-nzanzu-networking.jpg',
+    image: 'https://images.pixieset.com/316632121/08754741079bb79c572116ed28fbb79f-large.jpg',
     description:
       'The Corporate Business Circle was represented at the prestigious East Africa CEO Investment Forum held in Nairobi on 17–18 September 2026. The CBC executive delegation, led by CEO / Delegate Mr. Nzanzu Tshomba Eli, actively engaged top regional Chief Executives, international venture syndicates, and trade commissioners to build cross-border commercial bridges, attract direct investments into South Sudan, and advocate for integrated regional supply chains.',
     agenda: [
@@ -433,7 +433,7 @@ export const CBC_DIGNITARY_MILESTONES: DignitaryMilestone[] = [
     organization: 'Office of the Vice President & CBC Leadership',
     yearContext: 'Executive State Audience',
     location: 'Juba, South Sudan',
-    image: '/assets/dignitaries/taban-deng-gai.jpg',
+    image: '',
     categoryBadge: 'Vice-Presidential Delegation',
     historicalSignificance: 'High-level executive audience between the Corporate Business Circle leadership delegation and South Sudan Former Vice President Hon. Gen. Taban Deng Gai, focusing on sovereign infrastructure projects, private sector integration, and regional investment corridors.',
   },
@@ -446,7 +446,7 @@ export const CBC_DIGNITARY_MILESTONES: DignitaryMilestone[] = [
     organization: 'Corporate Business Circle (CBC) & Juba City Council',
     yearContext: 'Executive Civic Handshake & Municipal Partnership',
     location: 'Office of the Mayor, Juba City Council Chambers, South Sudan',
-    image: '/assets/dignitaries/allah-jabu.jpg',
+    image: '',
     categoryBadge: 'Historic Civic Landmark',
     historicalSignificance: 'South Sudanese corporate executive and CBC Founder Mandela Nelson with former Mayor of Juba City Hon. Michael Allah-Jabu during an official mayoral audience at Juba City Council. Demonstrating strong civic-commercial collaboration, municipal economic support, and automotive infrastructure initiatives for the capital.',
   },
@@ -459,7 +459,7 @@ export const CBC_DIGNITARY_MILESTONES: DignitaryMilestone[] = [
     organization: 'm-Gurush South Sudan & Corporate Business Circle',
     yearContext: 'Pioneering Mobile Financial Services',
     location: 'Juba, South Sudan',
-    image: '/assets/dignitaries/mgurush-launch.jpg',
+    image: '',
     categoryBadge: 'FinTech Landmark',
     historicalSignificance: 'Mandela Nelson (CBC Founder and South Sudanese corporate leader) on stage during the official commercial launch of m-Gurush South Sudan, the country’s pioneering mobile money and digital financial ecosystem in Juba.',
   },
@@ -472,7 +472,7 @@ export const CBC_DIGNITARY_MILESTONES: DignitaryMilestone[] = [
     organization: 'Economic Cluster / Office of the Vice President & CBC Leadership',
     yearContext: 'Executive Economic Dialogue',
     location: 'Juba, South Sudan',
-    image: '/assets/dignitaries/wani-igga.jpg',
+    image: '',
     categoryBadge: 'Vice-Presidential Audience',
     historicalSignificance: 'High-level executive audience and ceremonial presentation between the Corporate Business Circle leadership delegation and South Sudan Former Vice President Hon. Dr. James Wani Igga, deliberating on economic cluster revitalization, private enterprise support, and fiscal stability.',
   },
@@ -492,7 +492,7 @@ export const PAST_EVENTS: EventItem[] = [
     fee: 'Concluded / Official CBC Production',
     capacity: '300+ C-Suite Executives & Regional Trade Dignitaries',
     seatsLeft: 0,
-    image: '/assets/events/glc-grand-hall-pyramid.jpg',
+    image: 'https://images.pixieset.com/316632121/bfdcfddb9e140f5ad69aa17a9dee9bb9-large.jpeg',
     description:
       'The landmark corporate forum uniting South Sudan’s C-Suite executives, government dignitaries, regional trade attaches, and development finance institutions. Planned, marketed, and executed with strategic focus on transport corridor infrastructure, regional tariff harmonization, and local manufacturing incentives.',
     agenda: [
@@ -525,7 +525,7 @@ export const PAST_EVENTS: EventItem[] = [
     fee: 'Concluded / Official CBC Production',
     capacity: '450+ Continental Delegates & Ministers',
     seatsLeft: 0,
-    image: '/assets/events/glc-stage-delegation.jpg',
+    image: 'https://images.pixieset.com/316632121/189449dcd220fe5487e5a97a8151a61d-large.jpeg',
     description:
       'The 7th Edition of the Global Logistics Convention (GLC 2026) was successfully held on 25, 26 and 27 August 2026 at Pyramid Continental Hotel in Juba. Corporate Business Circle (CBC) was the official planning and marketing company, leading the end-to-end design, branding, public relations, high-security protocol, VIP guest hospitality, stagecraft, and commercial logistics. CBC was proudly presented with the prestigious award of "The Event Organizer of The Global Logistics Convention 2026".',
     agenda: [
@@ -560,7 +560,7 @@ export const PAST_EVENTS: EventItem[] = [
     fee: 'Concluded / Inception Hallmark',
     capacity: '2,000+ Attendees, 35+ Dealerships & Heavy Machinery Exhibitors',
     seatsLeft: 0,
-    image: '/assets/juba-autoshow/autoshow-organizers-2nd-edition.jpg',
+    image: '/assets/gallery/juba-autoshow-press-briefing.jpg',
     description:
       'The landmark flagship gathering where The Corporate Business Circle was born in 2022. Running consecutively from 2022 through 2025, the Juba Auto Show connects automobile lovers, leading car dealerships, commercial machinery suppliers (including David Machinery and LTA), corporate fleet operators, and financial institutions for an electrifying showcase of modern vehicle engineering, supercars, off-road buggies, and commercial fleet trade deals.',
     agenda: [
@@ -934,7 +934,7 @@ export const CBC_VIDEOS: CBCVideoItem[] = [
     sourceChannel: 'https://tomemediaco.pixieset.com/glc-2/',
     youtubeId: '',
     youtubeUrl: 'https://tomemediaco.pixieset.com/glc-2/',
-    thumbnail: '/assets/events/glc-grand-hall-pyramid.jpg',
+    thumbnail: 'https://images.pixieset.com/316632121/bfdcfddb9e140f5ad69aa17a9dee9bb9-large.jpeg',
     duration: 'Official Gallery Archive',
     category: 'International Convention & Awards',
     date: '25th – 27th August 2026',

@@ -266,6 +266,36 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                 </div>
               </div>
 
+              {/* Visual Aid Link Callout for Printing Works */}
+              {selectedService.id === 'design-brand-printing' && (
+                <div className="p-4 rounded-xl bg-gradient-to-r from-[#11233d] to-[#0c1a2e] border border-[#00aeef]/40 flex flex-col sm:flex-row items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-[#00aeef]/20 border border-[#00aeef]/40 flex items-center justify-center text-[#00aeef] shrink-0">
+                      <Palette className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h5 className="text-xs font-bold text-white flex items-center gap-1.5">
+                        <span>Printable Visual Identification Guide</span>
+                        <span className="px-1.5 py-0.5 rounded text-[9px] bg-[#00aeef] text-[#0c1a2e] font-bold">Visual Aids</span>
+                      </h5>
+                      <p className="text-[11px] text-slate-300">
+                        Inspect physical mockups & specs for promotional fliers, pull-up banners, waterproof stickers, uniforms, and architectural frames.
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => {
+                      const el = document.getElementById('design-printing');
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="w-full sm:w-auto px-4 py-2 rounded-lg bg-[#00aeef] hover:bg-[#38bdf8] text-[#0c1a2e] text-xs font-bold whitespace-nowrap flex items-center justify-center gap-1.5 transition-colors shadow shrink-0"
+                  >
+                    <span>View Printing Visual Aids</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              )}
+
               {/* CTA Action Row */}
               <div className="pt-4 border-t border-slate-700 flex flex-wrap items-center justify-between gap-4">
                 <div className="text-xs text-slate-400">

@@ -23,6 +23,7 @@ interface GallerySectionProps {
 type GalleryFilter = 
   | 'All' 
   | 'Juba Auto Show' 
+  | 'Projects & Launches' 
   | 'VIP & Dignitary Engagements' 
   | 'Design, Brand & Printing' 
   | 'Highlights & Summits' 
@@ -31,7 +32,7 @@ type GalleryFilter =
 
 export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenLightbox }) => {
   const [selectedCategory, setSelectedCategory] = useState<GalleryFilter>('All');
-  const [visibleCount, setVisibleCount] = useState(12);
+  const [visibleCount, setVisibleCount] = useState(16);
   const [, setRefreshKey] = useState(0);
 
   useEffect(() => {
@@ -56,6 +57,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenLightbox }
   const categories: GalleryFilter[] = [
     'All',
     'Juba Auto Show',
+    'Projects & Launches',
     'VIP & Dignitary Engagements',
     'Design, Brand & Printing',
     'Highlights & Summits',
@@ -134,7 +136,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenLightbox }
                 key={cat}
                 onClick={() => {
                   setSelectedCategory(cat);
-                  setVisibleCount(12);
+                  setVisibleCount(16);
                 }}
                 className={`px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all flex items-center gap-2 ${
                   selectedCategory === cat
@@ -158,7 +160,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenLightbox }
         </div>
 
         {/* Photo Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 [&>*]:mb-4">
           {displayedPhotos.map((photo, idx) => {
             const photoSrc = getPhotoSrc(photo);
             const globalIndex = GALLERY_PHOTOS.findIndex((p) => p.id === photo.id);
@@ -167,19 +169,22 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenLightbox }
             return (
               <div
                 key={photo.id}
+                data-photo
                 onClick={() => {
                   if (photoSrc) {
                     onOpenLightbox({ ...photo, url: photoSrc, urlFull: photoSrc, urlThumb: photoSrc }, lightboxIndex);
                   }
                 }}
-                className="group relative h-64 rounded-2xl overflow-hidden bg-[#0a182c] border border-slate-800 hover:border-[#00aeef]/60 shadow-lg cursor-pointer transition-all duration-300 transform hover:-translate-y-1"
+                className="group relative break-inside-avoid rounded-2xl overflow-hidden bg-[#0a182c] border border-slate-800 hover:border-[#00aeef]/60 shadow-lg cursor-pointer transition-all duration-300"
+                style={{ aspectRatio: photoSrc ? undefined : '4 / 3' }}
               >
                 {photoSrc ? (
                   <img
                     src={photoSrc}
                     alt={photo.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-auto block transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
+                    onError={(e) => { (e.currentTarget.closest('[data-photo]') as HTMLElement | null)?.style.setProperty('display', 'none'); }}
                   />
                 ) : (
                   <div className="w-full h-full flex flex-col items-center justify-center p-4 text-center bg-gradient-to-b from-[#0e1d33] via-[#091527] to-[#060e1a]">
@@ -230,7 +235,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenLightbox }
         <div className="mt-12 text-center space-y-4">
           {visibleCount < filteredPhotos.length && (
             <button
-              onClick={() => setVisibleCount((prev) => prev + 12)}
+              onClick={() => setVisibleCount((prev) => prev + 16)}
               className="px-6 py-3 rounded-lg bg-[#152843] hover:bg-[#1e365b] border border-slate-700 text-white font-semibold text-xs uppercase tracking-wider transition-all shadow"
             >
               Load More Photographs ({filteredPhotos.length - visibleCount} remaining)
