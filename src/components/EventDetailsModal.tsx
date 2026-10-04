@@ -276,7 +276,10 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
                         src={img.url}
                         alt={img.caption}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
+                        loading="eager"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = '/assets/juba-autoshow/autoshow-blue-jeep.jpg';
+                        }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
 
@@ -393,6 +396,10 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
                 src={selectedPhoto.url}
                 alt={selectedPhoto.caption}
                 className="max-h-[65vh] w-auto object-contain mx-auto rounded-lg"
+                loading="eager"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/assets/juba-autoshow/autoshow-blue-jeep.jpg';
+                }}
               />
             </div>
 

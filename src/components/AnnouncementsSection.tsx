@@ -21,13 +21,28 @@ import {
   Building2,
   X,
   Share2,
-  Check
+  Check,
+  AlertTriangle,
+  Zap,
+  Timer,
+  Filter
 } from 'lucide-react';
 import { CBC_CONTACT } from '../data/mockData';
+
+export type UrgencyBadgeType = 'Urgent' | 'Limited Time' | 'New' | 'Hot Deal';
+
+export interface UrgencyBadgeConfig {
+  label: UrgencyBadgeType;
+  subtext?: string;
+  variant: 'urgent' | 'limited' | 'new' | 'hot';
+  expiresIn?: string;
+  spotsLeft?: number;
+}
 
 export interface OfferItem {
   id: string;
   badge: string;
+  urgencyBadge: UrgencyBadgeConfig;
   title: string;
   partnerName: string;
   partnerLogo?: string;
@@ -47,7 +62,14 @@ export interface OfferItem {
 export const ANNOUNCEMENTS_DATA: OfferItem[] = [
   {
     id: 'capital-fm-free-month',
-    badge: 'Limited Availability • Exclusive Broadcast Offer',
+    badge: 'Exclusive Broadcast Airtime Allocation',
+    urgencyBadge: {
+      label: 'Urgent',
+      variant: 'urgent',
+      subtext: 'High Demand • Limited Production Slots',
+      expiresIn: 'Only 7 Studio Slots Remaining',
+      spotsLeft: 7,
+    },
     title: 'One Month Free Advert Campaign on 89.0 Capital FM',
     partnerName: '89.0 Capital FM ("The Rhythm of South Sudan")',
     partnerLogo: '/assets/client-logos/capital-fm.png',
@@ -71,6 +93,12 @@ export const ANNOUNCEMENTS_DATA: OfferItem[] = [
   {
     id: 'cbc-print-stage-render-bundle',
     badge: 'CBC Creative Print Shop Perk',
+    urgencyBadge: {
+      label: 'New',
+      variant: 'new',
+      subtext: 'Just Released for 2026 Summit Season',
+      expiresIn: 'Freshly Added Corporate Perk',
+    },
     title: 'Complimentary 3D Stage Staging with Conference Print Packages',
     partnerName: 'Corporate Business Circle (CBC Creative Team)',
     category: 'Printing & Design',
@@ -93,6 +121,12 @@ export const ANNOUNCEMENTS_DATA: OfferItem[] = [
   {
     id: 'cbc-chamber-b2b-desk',
     badge: 'Chamber Enterprise Perk',
+    urgencyBadge: {
+      label: 'Limited Time',
+      variant: 'limited',
+      subtext: '60-Day Cohort Window Active',
+      expiresIn: 'Closes End of Q4 2026',
+    },
     title: 'Complimentary B2B Trade Facilitation Desk for Capital FM Advertisers',
     partnerName: 'CBC Executive Chamber & Trade Secretariat',
     category: 'Executive Chamber',
@@ -112,7 +146,124 @@ export const ANNOUNCEMENTS_DATA: OfferItem[] = [
     expiryNote: 'Active throughout Q3 & Q4 2026.',
     isFeatured: false,
   },
+  {
+    id: 'juba-autoshow-early-bird-booth',
+    badge: 'Automotive Festival Exhibition Special',
+    urgencyBadge: {
+      label: 'Limited Time',
+      variant: 'limited',
+      subtext: 'Early-Bird Exhibition Allocation',
+      expiresIn: 'Only 3 Pavilion Spaces Left',
+      spotsLeft: 3,
+    },
+    title: 'Priority Courtyard Pavilion Booking for The Juba Auto Show 2026',
+    partnerName: 'CBC Automotive Council & Juba Auto Show Secretariat',
+    category: 'Executive Chamber',
+    tagline: 'Reserve Outdoor Display Pitch & Receive Complimentary Radio Feature on 89.0 Capital FM',
+    description: 'Exhibitors securing corporate pavilion spaces for the upcoming Juba Auto Show receive priority courtyard vehicular spots plus two complimentary on-air commercial previews on Capital FM 89.0.',
+    image: '/assets/juba-autoshow/autoshow-courtyard-exhibition.jpg',
+    highlights: [
+      'Prime interlocking paving exhibition pitch for up to 4 showroom vehicles',
+      'VIP passes to the Executive Inception Gala Dinner at Pyramid Continental',
+      'Two (2) complimentary on-air radio promotional spots before show kickoff',
+      'Inclusion in the official Juba Auto Show print magazine program'
+    ],
+    keyTerms: 'Early registration rate reserved for verified automotive dealerships and equipment distributors.',
+    contactPhones: ['+211 922 666 050', '+211 984 809 801'],
+    contactEmail: 'Info@corporatebusinesscircle.com',
+    location: 'Pyramid Continental Hotel Grounds & Ministries Road, Juba',
+    expiryNote: 'Early-bird allocation closes once 3 remaining pavilions are confirmed.',
+    isFeatured: false,
+  },
 ];
+
+// Reusable visual badge component with distinct color, icon, and pulsing beacon
+export const UrgencyBadge: React.FC<{
+  config: UrgencyBadgeConfig;
+  size?: 'xs' | 'sm' | 'md' | 'lg';
+  showSubtext?: boolean;
+  className?: string;
+}> = ({ config, size = 'md', showSubtext = false, className = '' }) => {
+  const { label, subtext, variant, expiresIn } = config;
+
+  if (variant === 'urgent') {
+    return (
+      <span
+        className={`inline-flex items-center gap-1.5 rounded-md border font-black uppercase tracking-wider shadow transition-all ${
+          size === 'xs'
+            ? 'px-1.5 py-0.5 text-[9px]'
+            : size === 'sm'
+            ? 'px-2 py-0.5 text-[10px]'
+            : size === 'lg'
+            ? 'px-3.5 py-1.5 text-xs'
+            : 'px-2.5 py-1 text-[11px]'
+        } bg-gradient-to-r from-red-600 via-rose-600 to-red-700 text-white border-red-300/80 shadow-red-950/60 ${className}`}
+        title={`${label} Offer: ${subtext || expiresIn || ''}`}
+      >
+        <span className="relative flex h-2 w-2 shrink-0">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-200 opacity-90"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-300"></span>
+        </span>
+        <Flame className="w-3.5 h-3.5 fill-amber-300 text-amber-200 shrink-0" />
+        <span>{label}</span>
+        {showSubtext && (expiresIn || subtext) && (
+          <span className="normal-case font-semibold text-red-100 border-l border-red-300/40 pl-1.5 ml-0.5 hidden sm:inline">
+            {expiresIn || subtext}
+          </span>
+        )}
+      </span>
+    );
+  }
+
+  if (variant === 'limited') {
+    return (
+      <span
+        className={`inline-flex items-center gap-1.5 rounded-md border font-black uppercase tracking-wider shadow transition-all ${
+          size === 'xs'
+            ? 'px-1.5 py-0.5 text-[9px]'
+            : size === 'sm'
+            ? 'px-2 py-0.5 text-[10px]'
+            : size === 'lg'
+            ? 'px-3.5 py-1.5 text-xs'
+            : 'px-2.5 py-1 text-[11px]'
+        } bg-gradient-to-r from-amber-500 via-amber-400 to-orange-500 text-slate-950 border-amber-200 shadow-amber-950/60 ${className}`}
+        title={`${label} Offer: ${subtext || expiresIn || ''}`}
+      >
+        <Clock className="w-3.5 h-3.5 text-slate-950 shrink-0" />
+        <span>{label}</span>
+        {showSubtext && (expiresIn || subtext) && (
+          <span className="normal-case font-bold text-slate-900 border-l border-amber-700/40 pl-1.5 ml-0.5 hidden sm:inline">
+            {expiresIn || subtext}
+          </span>
+        )}
+      </span>
+    );
+  }
+
+  // 'new' variant
+  return (
+    <span
+      className={`inline-flex items-center gap-1.5 rounded-md border font-black uppercase tracking-wider shadow transition-all ${
+        size === 'xs'
+          ? 'px-1.5 py-0.5 text-[9px]'
+          : size === 'sm'
+          ? 'px-2 py-0.5 text-[10px]'
+          : size === 'lg'
+          ? 'px-3.5 py-1.5 text-xs'
+          : 'px-2.5 py-1 text-[11px]'
+      } bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-500 text-slate-950 border-emerald-200 shadow-emerald-950/60 ${className}`}
+      title={`${label} Offer: ${subtext || expiresIn || ''}`}
+    >
+      <Sparkles className="w-3.5 h-3.5 text-slate-950 shrink-0" />
+      <span>{label}</span>
+      {showSubtext && (expiresIn || subtext) && (
+        <span className="normal-case font-bold text-slate-900 border-l border-emerald-700/40 pl-1.5 ml-0.5 hidden sm:inline">
+          {expiresIn || subtext}
+        </span>
+      )}
+    </span>
+  );
+};
 
 interface AnnouncementsSectionProps {
   onOpenContact?: () => void;
@@ -122,6 +273,7 @@ export const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({
   onOpenContact,
 }) => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
+  const [statusFilter, setStatusFilter] = useState<string>('All');
   const [selectedOffer, setSelectedOffer] = useState<OfferItem | null>(null);
   const [isAudioSimPlaying, setIsAudioSimPlaying] = useState<boolean>(false);
   const [copiedPhone, setCopiedPhone] = useState<string | null>(null);
@@ -137,10 +289,12 @@ export const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({
   });
 
   const categories = ['All', 'Broadcast & Media', 'Printing & Design', 'Executive Chamber'];
+  const urgencyBadgesList = ['All', 'Urgent', 'Limited Time', 'New'];
 
   const filteredOffers = ANNOUNCEMENTS_DATA.filter((item) => {
-    if (activeCategory === 'All') return true;
-    return item.category === activeCategory;
+    const categoryMatches = activeCategory === 'All' || item.category === activeCategory;
+    const statusMatches = statusFilter === 'All' || item.urgencyBadge.label === statusFilter;
+    return categoryMatches && statusMatches;
   });
 
   const featuredOffer = ANNOUNCEMENTS_DATA.find((o) => o.id === 'capital-fm-free-month') || ANNOUNCEMENTS_DATA[0];
@@ -202,6 +356,24 @@ export const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({
           {/* Subtle pulsating glow badge */}
           <div className="absolute -top-12 -right-12 w-64 h-64 bg-red-600/20 rounded-full blur-3xl pointer-events-none"></div>
 
+          {/* High-Impact Visual Urgency Announcement Banner */}
+          <div className="bg-gradient-to-r from-red-950 via-rose-950/80 to-[#0e1729] px-5 py-3 border-b border-red-500/40 flex flex-wrap items-center justify-between gap-3 text-xs">
+            <div className="flex items-center gap-3">
+              <UrgencyBadge config={featuredOffer.urgencyBadge} size="sm" showSubtext />
+              <span className="text-white font-bold hidden sm:inline">{featuredOffer.urgencyBadge.subtext}</span>
+            </div>
+            <div className="flex items-center gap-4 text-slate-300 text-xs">
+              <div className="flex items-center gap-1.5 text-amber-300 font-bold">
+                <Clock className="w-3.5 h-3.5 text-amber-400" />
+                <span>{featuredOffer.urgencyBadge.expiresIn}</span>
+              </div>
+              <div className="hidden md:flex items-center gap-2 pl-3 border-l border-red-800/60 text-[11px] text-slate-400">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>Applications Open to Registered Enterprises</span>
+              </div>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
             
             {/* Left Column: Visual Poster & Station Mockup */}
@@ -219,12 +391,12 @@ export const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({
                   </div>
                 </div>
 
-                <span className="px-2.5 py-1 rounded-full bg-red-600 text-white text-[10px] font-black uppercase tracking-widest shadow">
-                  SPECIAL CAMPAIGN
-                </span>
+                <div className="flex items-center gap-1.5">
+                  <UrgencyBadge config={featuredOffer.urgencyBadge} size="xs" />
+                </div>
               </div>
 
-              {/* Promotional Graphic Display */}
+              {/* Promotional Graphic Display with overlay badge */}
               <div 
                 className="relative rounded-2xl overflow-hidden border border-red-500/40 shadow-2xl bg-black group/poster cursor-pointer my-2"
                 onClick={() => setSelectedOffer(featuredOffer)}
@@ -236,6 +408,11 @@ export const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({
                   loading="eager"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none"></div>
+
+                {/* Top overlay urgency badge on poster */}
+                <div className="absolute top-3 left-3 z-10">
+                  <UrgencyBadge config={featuredOffer.urgencyBadge} size="sm" showSubtext />
+                </div>
 
                 <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] text-slate-300 z-10">
                   <span className="font-bold text-red-300 truncate">1 Month Free Airtime Package</span>
@@ -282,8 +459,9 @@ export const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({
             <div className="lg:col-span-7 p-6 sm:p-8 lg:p-10 flex flex-col justify-between space-y-6">
               
               <div className="space-y-4">
-                {/* Header Tagline */}
-                <div className="flex flex-wrap items-center gap-2">
+                {/* Header Tagline & Visual Urgency Badges */}
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <UrgencyBadge config={featuredOffer.urgencyBadge} size="md" showSubtext />
                   <span className="px-3 py-1 rounded-md bg-red-600/20 text-red-300 border border-red-500/40 text-[11px] font-black uppercase tracking-wider">
                     FREE AIRTIME CAMPAIGN
                   </span>
@@ -418,31 +596,71 @@ export const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({
         </div>
 
         {/* Filter Navigation for Other Offers */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
           <div>
-            <h3 className="text-xl sm:text-2xl font-serif font-bold text-white">
-              All Active Announcements & Partner Offers
-            </h3>
-            <p className="text-xs text-slate-400 mt-0.5">
-              Updated regularly with verified promotional opportunities for corporate partners in South Sudan.
+            <div className="flex items-center gap-2.5">
+              <h3 className="text-xl sm:text-2xl font-serif font-bold text-white">
+                All Active Announcements & Partner Offers
+              </h3>
+              <span className="px-2.5 py-0.5 rounded-full bg-[#102238] border border-slate-700 text-slate-300 text-xs font-bold">
+                {filteredOffers.length} {filteredOffers.length === 1 ? 'Offer' : 'Offers'}
+              </span>
+            </div>
+            <p className="text-xs text-slate-400 mt-1">
+              Filter by urgency status badge (Urgent, Limited Time, New) or commercial industry category.
             </p>
           </div>
 
-          <div className="flex items-center gap-2 overflow-x-auto pb-1">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                type="button"
-                onClick={() => setActiveCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
-                  activeCategory === cat
-                    ? 'bg-[#00aeef] text-[#0c1a2e] shadow-sm font-black'
-                    : 'bg-[#102238] text-slate-300 hover:bg-[#152e4d] hover:text-white border border-slate-700/60'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+          {/* Dual Filtering: Urgency Badges & Categories */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            {/* Status Badges Filter */}
+            <div className="flex items-center gap-1.5 p-1 rounded-xl bg-[#091729] border border-slate-800">
+              <span className="text-[10px] text-slate-400 font-semibold uppercase px-2 hidden sm:inline">Status:</span>
+              {urgencyBadgesList.map((badgeName) => {
+                const isActive = statusFilter === badgeName;
+                return (
+                  <button
+                    key={badgeName}
+                    type="button"
+                    onClick={() => setStatusFilter(badgeName)}
+                    className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all whitespace-nowrap flex items-center gap-1 ${
+                      isActive
+                        ? badgeName === 'Urgent'
+                          ? 'bg-red-600 text-white shadow'
+                          : badgeName === 'Limited Time'
+                          ? 'bg-amber-500 text-slate-950 shadow'
+                          : badgeName === 'New'
+                          ? 'bg-emerald-500 text-slate-950 shadow'
+                          : 'bg-[#00aeef] text-[#0c1a2e] shadow'
+                        : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                    }`}
+                  >
+                    {badgeName === 'Urgent' && <Flame className="w-3 h-3 fill-current text-amber-200" />}
+                    {badgeName === 'Limited Time' && <Clock className="w-3 h-3" />}
+                    {badgeName === 'New' && <Sparkles className="w-3 h-3" />}
+                    <span>{badgeName}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Category Filter */}
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  type="button"
+                  onClick={() => setActiveCategory(cat)}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+                    activeCategory === cat
+                      ? 'bg-[#00aeef] text-[#0c1a2e] shadow-sm font-black'
+                      : 'bg-[#102238] text-slate-300 hover:bg-[#152e4d] hover:text-white border border-slate-700/60'
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -474,9 +692,11 @@ export const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0c1a2e] via-[#0c1a2e]/40 to-transparent"></div>
 
-                    {/* Top Badges */}
-                    <div className="absolute top-3 left-3 z-10">
-                      <span className={`px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider backdrop-blur-sm border ${
+                    {/* Top Badges: Visual Urgency Badge + Category */}
+                    <div className="absolute top-3 left-3 right-3 z-10 flex items-center justify-between gap-2">
+                      <UrgencyBadge config={offer.urgencyBadge} size="sm" showSubtext={false} />
+
+                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider backdrop-blur-md border ${
                         isCapital
                           ? 'bg-red-600/90 text-white border-red-400/50'
                           : 'bg-[#0c1a2e]/90 text-[#00aeef] border-[#00aeef]/40'
@@ -485,7 +705,7 @@ export const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({
                       </span>
                     </div>
 
-                    <div className="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity p-1.5 rounded-lg bg-[#00aeef] text-[#0c1a2e] shadow-lg">
+                    <div className="absolute bottom-10 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity p-1.5 rounded-lg bg-[#00aeef] text-[#0c1a2e] shadow-lg">
                       <ArrowRight className="w-3.5 h-3.5" />
                     </div>
 
@@ -498,9 +718,24 @@ export const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({
                   {/* Card Body */}
                   <div className="p-5 space-y-3.5">
                     <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-amber-400 block mb-1">
-                        {offer.badge}
-                      </span>
+                      {/* Urgency Announcement Subtext Ribbon */}
+                      <div className="flex items-center gap-1.5 mb-1.5">
+                        <span className={`text-[10px] font-extrabold uppercase tracking-wider flex items-center gap-1 ${
+                          offer.urgencyBadge.variant === 'urgent'
+                            ? 'text-rose-400'
+                            : offer.urgencyBadge.variant === 'limited'
+                            ? 'text-amber-400'
+                            : 'text-emerald-400'
+                        }`}>
+                          {offer.urgencyBadge.variant === 'urgent' && <Flame className="w-3 h-3 fill-current" />}
+                          {offer.urgencyBadge.variant === 'limited' && <Clock className="w-3 h-3" />}
+                          {offer.urgencyBadge.variant === 'new' && <Sparkles className="w-3 h-3" />}
+                          <span>{offer.urgencyBadge.label}</span>
+                          <span className="text-slate-500 font-normal">•</span>
+                          <span className="text-slate-300 font-medium normal-case">{offer.urgencyBadge.subtext}</span>
+                        </span>
+                      </div>
+
                       <h4 className="text-base font-serif font-bold text-white group-hover:text-[#00aeef] transition-colors leading-snug">
                         {offer.title}
                       </h4>
@@ -508,6 +743,27 @@ export const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({
                         {offer.tagline}
                       </p>
                     </div>
+
+                    {/* Urgent/Limited Expiry Warning Ribbon */}
+                    {offer.urgencyBadge.expiresIn && (
+                      <div className={`p-2 rounded-lg border text-[11px] font-semibold flex items-center justify-between gap-2 ${
+                        offer.urgencyBadge.variant === 'urgent'
+                          ? 'bg-red-950/40 border-red-800/60 text-red-200'
+                          : offer.urgencyBadge.variant === 'limited'
+                          ? 'bg-amber-950/40 border-amber-800/60 text-amber-200'
+                          : 'bg-emerald-950/40 border-emerald-800/60 text-emerald-200'
+                      }`}>
+                        <div className="flex items-center gap-1.5">
+                          {offer.urgencyBadge.variant === 'urgent' && <AlertTriangle className="w-3.5 h-3.5 text-red-400 shrink-0" />}
+                          {offer.urgencyBadge.variant === 'limited' && <Clock className="w-3.5 h-3.5 text-amber-400 shrink-0" />}
+                          {offer.urgencyBadge.variant === 'new' && <Zap className="w-3.5 h-3.5 text-emerald-400 shrink-0" />}
+                          <span>{offer.urgencyBadge.expiresIn}</span>
+                        </div>
+                        <span className="text-[10px] font-bold uppercase tracking-wider underline">
+                          Lock In
+                        </span>
+                      </div>
+                    )}
 
                     {/* Highlights */}
                     <div className="space-y-1.5 pt-1">
@@ -572,8 +828,9 @@ export const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({
                   <Radio className="w-5 h-5 text-red-500" />
                 </div>
                 <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-red-400">
+                  <div className="flex flex-wrap items-center gap-2 mb-1">
+                    <UrgencyBadge config={selectedOffer.urgencyBadge} size="xs" showSubtext />
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-300">
                       {selectedOffer.category}
                     </span>
                     <span className="text-[10px] text-slate-400">• Verified Commercial Partner</span>
@@ -648,6 +905,30 @@ export const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({
                     <strong key={p} className="text-white font-mono">{p}</strong>
                   ))}
                 </div>
+              </div>
+
+              {/* Urgency Status Notice */}
+              <div className={`p-3.5 rounded-xl border flex items-center justify-between gap-3 text-xs ${
+                selectedOffer.urgencyBadge.variant === 'urgent'
+                  ? 'bg-red-950/60 border-red-600/60 text-red-200'
+                  : selectedOffer.urgencyBadge.variant === 'limited'
+                  ? 'bg-amber-950/60 border-amber-500/60 text-amber-200'
+                  : 'bg-emerald-950/60 border-emerald-500/60 text-emerald-200'
+              }`}>
+                <div className="flex items-center gap-2.5">
+                  {selectedOffer.urgencyBadge.variant === 'urgent' && <Flame className="w-4 h-4 text-red-400 animate-pulse shrink-0" />}
+                  {selectedOffer.urgencyBadge.variant === 'limited' && <Clock className="w-4 h-4 text-amber-400 shrink-0" />}
+                  {selectedOffer.urgencyBadge.variant === 'new' && <Sparkles className="w-4 h-4 text-emerald-400 shrink-0" />}
+                  <div>
+                    <span className="font-bold uppercase tracking-wide mr-1.5">
+                      {selectedOffer.urgencyBadge.label} Alert:
+                    </span>
+                    <span>{selectedOffer.urgencyBadge.subtext}. {selectedOffer.urgencyBadge.expiresIn}</span>
+                  </div>
+                </div>
+                <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-black/40 border border-white/10 shrink-0 hidden sm:inline">
+                  Active Allocation
+                </span>
               </div>
 
               {/* Quick Claim / Express Form */}

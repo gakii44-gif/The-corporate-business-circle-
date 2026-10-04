@@ -151,6 +151,13 @@ export const PRINTING_WORKS: PrintWorkItem[] = [
       'Vehicle and corporate fleet branding decals with residue-free removal',
       'Asset tracking QR-codes, tamper-evident warranty seals, and barcode labels',
     ],
+    realExample: {
+      title: 'Waterproof Die-Cut Decals & Packaging Wraps',
+      image: '/assets/branding-printing/stickers-decals.jpg',
+      tag: 'Waterproof Commercial Decals',
+      description: 'Custom contour die-cut waterproof vinyl stickers and commercial labels designed and precision-cut by CBC for beverage bottles, packaging, and vehicle fleet branding.',
+      badge: '100% Waterproof Decals',
+    },
   },
   {
     id: 'apparel-uniforms',
@@ -363,8 +370,8 @@ export const DesignPrintingShowcase: React.FC<DesignPrintingShowcaseProps> = ({
   const [previewItem, setPreviewItem] = useState<PrintWorkItem | null>(null);
   const [selectedImpression, setSelectedImpression] = useState<CreativeImpressionItem | null>(null);
   const [impressionFilter, setImpressionFilter] = useState<string>('All');
-  const [stageViewMode, setStageViewMode] = useState<'schematic' | 'real'>('schematic');
-  const [modalViewMode, setModalViewMode] = useState<'schematic' | 'real'>('schematic');
+  const [stageViewMode, setStageViewMode] = useState<'schematic' | 'real'>('real');
+  const [modalViewMode, setModalViewMode] = useState<'schematic' | 'real'>('real');
 
   const filters = [
     'All',
@@ -456,7 +463,10 @@ export const DesignPrintingShowcase: React.FC<DesignPrintingShowcaseProps> = ({
               return (
                 <button
                   key={work.id}
-                  onClick={() => setActiveIdentifierId(work.id)}
+                  onClick={() => {
+                    setActiveIdentifierId(work.id);
+                    setStageViewMode('real');
+                  }}
                   className={`p-3 rounded-xl border text-left transition-all flex flex-col justify-between group ${
                     isSelected
                       ? 'bg-[#152843] border-[#00aeef] shadow-lg shadow-[#00aeef]/10 ring-1 ring-[#00aeef]'
@@ -681,10 +691,22 @@ export const DesignPrintingShowcase: React.FC<DesignPrintingShowcaseProps> = ({
                 {/* VISUAL AID ILLUSTRATION AT TOP OF CARD */}
                 <div 
                   className="relative h-52 w-full overflow-hidden cursor-pointer bg-slate-900 border-b border-slate-800"
-                  onClick={() => setPreviewItem(item)}
+                  onClick={() => {
+                    setPreviewItem(item);
+                    setModalViewMode('real');
+                  }}
                   title={`Click to inspect visual aid for ${item.title}`}
                 >
-                  <PrintableVisualAid category={item.category} variant="card" />
+                  {item.realExample ? (
+                    <img
+                      src={item.realExample.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      loading="eager"
+                    />
+                  ) : (
+                    <PrintableVisualAid category={item.category} variant="card" />
+                  )}
 
                   {/* Format Badge Overlay */}
                   <div className="absolute top-3 left-3 z-10 flex items-center gap-2">

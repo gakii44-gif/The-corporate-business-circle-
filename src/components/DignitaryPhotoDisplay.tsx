@@ -132,6 +132,9 @@ export const DignitaryPhotoDisplay: React.FC<DignitaryPhotoDisplayProps> = ({
             alt={title}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             loading="eager"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = '/assets/gallery/courtesy-visit-handshake.jpg';
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0c1a2e]/90 via-[#0c1a2e]/20 to-transparent pointer-events-none"></div>
 

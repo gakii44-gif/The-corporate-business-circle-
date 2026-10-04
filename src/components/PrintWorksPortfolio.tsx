@@ -64,6 +64,7 @@ export const PORTFOLIO_SAMPLES: PortfolioSampleItem[] = [
     materials: '350gsm Silk Cover Board + 120gsm Executive Uncoated Bond',
     finishes: 'Velvet Soft-Touch Lamination, Spot UV, Metallic Foil Accent',
     turnaround: '48 – 72 Hours in Juba',
+    realImage: '/assets/branding-printing/framing-displays.jpg',
     badge: 'Flagship Corporate Suite',
     specs: {
       resolution: 'Vector / 300+ DPI',
@@ -90,6 +91,7 @@ export const PORTFOLIO_SAMPLES: PortfolioSampleItem[] = [
     materials: '160gsm – 250gsm 100% Archival Cotton Rag Paper',
     finishes: 'Blind Debossing, Hot Foil Stamping, Micro-Embossing',
     turnaround: '24 – 48 Hours',
+    realImage: '/assets/gallery/courtesy-visit-handshake.jpg',
     badge: 'Diplomatic & Sovereign Grade',
     specs: {
       resolution: 'Vector EPS / Strict Vector Die Cut',
@@ -145,6 +147,7 @@ export const PORTFOLIO_SAMPLES: PortfolioSampleItem[] = [
     materials: '150gsm – 250gsm Semi-Matte Silk Art Card',
     finishes: 'Precision Machine Scoring, Tri-Fold Creasing, Matte Lamination',
     turnaround: '24 – 48 Hours',
+    realImage: '/assets/branding-printing/fliers-brochures.jpg',
     badge: 'Popular for Summits',
     specs: {
       resolution: '300 DPI',
@@ -173,6 +176,7 @@ export const PORTFOLIO_SAMPLES: PortfolioSampleItem[] = [
     materials: '450gsm Multi-Layer Duplexed Board',
     finishes: 'Hot Foil Stamping (Gold/Silver/Copper), Velvet Matte Lamination, Gilded Edges',
     turnaround: '48 Hours',
+    realImage: '/assets/gallery/executive-at-work.jpg',
     badge: 'Executive & Ministerial Choice',
     specs: {
       resolution: 'Vector Linework for Foil Die (100% K vector overlay)',
@@ -199,6 +203,7 @@ export const PORTFOLIO_SAMPLES: PortfolioSampleItem[] = [
     materials: '400gsm Heavy Silk Cardboard or Matte PVC Core',
     finishes: 'Raised 3D Spot UV Varnish, Matte Lamination, Embedded NFC Antenna',
     turnaround: '48 – 72 Hours',
+    realImage: '/assets/branding-printing/stickers-decals.jpg',
     badge: 'Smart Technology Integration',
     specs: {
       resolution: '300 DPI + 100% Vector Spot UV Mask Layer',
@@ -227,6 +232,7 @@ export const PORTFOLIO_SAMPLES: PortfolioSampleItem[] = [
     materials: '440gsm Grey-Back Blockout Polypropylene Film',
     finishes: 'Matte Anti-Reflective Lamination, Top Aluminum Clamp Rail',
     turnaround: 'Same Day / 24 Hours in Juba',
+    realImage: '/assets/gallery/glc-2026-stage-branding.jpg',
     badge: 'Essential Summit Signage',
     specs: {
       resolution: '150 – 300 DPI at full scale',
@@ -280,6 +286,7 @@ export const PORTFOLIO_SAMPLES: PortfolioSampleItem[] = [
     materials: '115gsm 100% Knitted Weather-Resistant Polyester Mesh',
     finishes: 'Reinforced Elastic Header Sleeve, Dual-Stitched Hemming',
     turnaround: '48 Hours',
+    realImage: '/assets/branding-printing/banners-backdrops.jpg',
     badge: 'Outdoor Event Hallmark',
     specs: {
       resolution: '150 – 300 DPI on vector flag template',
@@ -862,15 +869,30 @@ export const PrintWorksPortfolio: React.FC<PrintWorksPortfolioProps> = ({
             <div>
               {/* TOP VISUAL AID STAGE */}
               <div
-                className="relative cursor-pointer overflow-hidden group/stage"
+                className="relative cursor-pointer overflow-hidden group/stage h-48 bg-slate-900"
                 onClick={() => {
                   setSelectedSample(sample);
-                  setActiveViewMode(sample.realImage ? 'realistic' : 'schematic');
+                  setActiveViewMode('realistic');
                 }}
                 title={`Click to inspect visual aid for ${sample.title}`}
               >
-                {/* SVG Visual Aid Schematic */}
-                {renderVisualAidSvg(sample.visualAidType, false)}
+                {sample.realImage ? (
+                  <div className="relative w-full h-full overflow-hidden bg-slate-950">
+                    <img
+                      src={sample.realImage}
+                      alt={sample.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover/stage:scale-105"
+                      loading="eager"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = '/assets/gallery/glc-2026-stage-branding.jpg';
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+                  </div>
+                ) : (
+                  /* SVG Visual Aid Schematic */
+                  renderVisualAidSvg(sample.visualAidType, false)
+                )}
 
                 {/* Top Badge Overlay */}
                 <div className="absolute top-3 left-3 z-10 flex items-center gap-2">
@@ -1066,6 +1088,10 @@ export const PrintWorksPortfolio: React.FC<PrintWorksPortfolioProps> = ({
                       src={selectedSample.realImage}
                       alt={selectedSample.title}
                       className="max-h-[340px] w-auto object-contain rounded-xl shadow-2xl border border-slate-700/80"
+                      loading="eager"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = '/assets/gallery/glc-2026-stage-branding.jpg';
+                      }}
                     />
                   </div>
                 ) : (
