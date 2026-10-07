@@ -532,12 +532,21 @@ export const DesignPrintingShowcase: React.FC<DesignPrintingShowcaseProps> = ({
               {/* Display Content: Schematic or Authentic Session Graphic */}
               {stageViewMode === 'real' && activeIdentifierItem.realExample ? (
                 <div className="relative w-full h-full min-h-[340px] flex flex-col items-center justify-center p-6 bg-gradient-to-br from-[#06111f] via-[#0b1c31] to-[#071322]">
-                  <div className="relative max-h-[300px] max-w-full rounded-xl overflow-hidden shadow-2xl border border-slate-700/80 bg-black/40 group/photo cursor-pointer" onClick={() => setPreviewItem(activeIdentifierItem)}>
+                  <div
+                    className="relative max-h-[300px] max-w-full rounded-xl overflow-hidden shadow-2xl border border-slate-700/80 bg-black/40 group/photo cursor-pointer"
+                    onClick={() => {
+                      setPreviewItem(activeIdentifierItem);
+                      setModalViewMode('real');
+                    }}
+                  >
                     <img
                       src={activeIdentifierItem.realExample.image}
                       alt={activeIdentifierItem.realExample.title}
                       className="max-h-[300px] w-auto object-contain mx-auto transition-transform duration-500 group-hover/photo:scale-105"
                       loading="eager"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = '/assets/gallery/glc-2026-stage-branding.jpg';
+                      }}
                     />
                     <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/95 via-black/80 to-transparent p-3 text-left">
                       <span className="inline-block px-2 py-0.5 rounded bg-amber-400 text-slate-950 font-black text-[9px] uppercase tracking-wider mb-1">
@@ -558,7 +567,10 @@ export const DesignPrintingShowcase: React.FC<DesignPrintingShowcaseProps> = ({
 
               {/* Zoom Trigger Button */}
               <button
-                onClick={() => setPreviewItem(activeIdentifierItem)}
+                onClick={() => {
+                  setPreviewItem(activeIdentifierItem);
+                  setModalViewMode('real');
+                }}
                 className="absolute top-3 right-3 z-20 p-2 rounded-xl bg-black/60 hover:bg-[#00aeef] text-white hover:text-[#0c1a2e] transition-colors border border-white/10"
                 title="Expand Visual Aid"
               >
@@ -703,6 +715,10 @@ export const DesignPrintingShowcase: React.FC<DesignPrintingShowcaseProps> = ({
                       alt={item.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="eager"
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = '/assets/gallery/glc-2026-stage-branding.jpg';
+                      }}
                     />
                   ) : (
                     <PrintableVisualAid category={item.category} variant="card" />
@@ -937,6 +953,10 @@ export const DesignPrintingShowcase: React.FC<DesignPrintingShowcaseProps> = ({
                               alt={item.title}
                               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                               loading="lazy"
+                              referrerPolicy="no-referrer"
+                              onError={(e) => {
+                                (e.target as HTMLImageElement).src = '/assets/gallery/glc-2026-stage-branding.jpg';
+                              }}
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
@@ -1180,6 +1200,11 @@ export const DesignPrintingShowcase: React.FC<DesignPrintingShowcaseProps> = ({
                       src={previewItem.realExample.image}
                       alt={previewItem.realExample.title}
                       className="max-h-[360px] w-auto object-contain mx-auto"
+                      loading="eager"
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = '/assets/gallery/glc-2026-stage-branding.jpg';
+                      }}
                     />
                   </div>
                   <div className="mt-3 text-center">
@@ -1391,6 +1416,11 @@ export const DesignPrintingShowcase: React.FC<DesignPrintingShowcaseProps> = ({
                   src={selectedImpression.image}
                   alt={selectedImpression.title}
                   className="max-h-[440px] w-auto object-contain mx-auto rounded-xl shadow-2xl"
+                  loading="eager"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = '/assets/gallery/glc-2026-stage-branding.jpg';
+                  }}
                 />
               </div>
             )}

@@ -177,7 +177,14 @@ END:VCALENDAR`;
               </button>
 
               <button
-                onClick={() => onNavigateToGallery ? onNavigateToGallery() : window.open(CBC_PIXIESET_URL, '_blank')}
+                onClick={() => {
+                  if (onNavigateToGallery) {
+                    onNavigateToGallery();
+                  } else {
+                    const el = document.getElementById('gallery');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
                 className="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs uppercase tracking-wider transition-all text-center flex items-center justify-center gap-2"
               >
                 <Camera className="w-4 h-4 text-[#00aeef]" />
@@ -358,7 +365,14 @@ END:VCALENDAR`;
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                   <button
-                    onClick={() => onNavigateToGallery ? onNavigateToGallery() : window.open(CBC_PIXIESET_URL, '_blank')}
+                    onClick={() => {
+                      if (onNavigateToGallery) {
+                        onNavigateToGallery();
+                      } else {
+                        const el = document.getElementById('gallery');
+                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
                     className="px-5 py-2.5 rounded-lg bg-slate-200 hover:bg-slate-300 text-[#0c1a2e] font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1.5"
                   >
                     <Camera className="w-3.5 h-3.5 text-[#00aeef]" />
@@ -447,6 +461,10 @@ END:VCALENDAR`;
                                 alt={event.title}
                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                 loading="lazy"
+                                referrerPolicy="no-referrer"
+                                onError={(e) => {
+                                  (e.target as HTMLImageElement).src = '/assets/events/glc-grand-hall-pyramid.jpg';
+                                }}
                               />
                               <div className="absolute inset-0 bg-gradient-to-t from-[#0c1a2e] via-[#0c1a2e]/50 to-transparent"></div>
 
@@ -577,6 +595,11 @@ END:VCALENDAR`;
                                           src={gImg.url}
                                           alt={gImg.caption}
                                           className="w-full h-full object-cover"
+                                          loading="lazy"
+                                          referrerPolicy="no-referrer"
+                                          onError={(e) => {
+                                            (e.target as HTMLImageElement).src = '/assets/juba-autoshow/autoshow-blue-jeep.jpg';
+                                          }}
                                         />
                                       </button>
                                     );
@@ -697,7 +720,8 @@ END:VCALENDAR`;
                                 } else if (onNavigateToGallery) {
                                   onNavigateToGallery();
                                 } else {
-                                  window.open(CBC_PIXIESET_URL, '_blank');
+                                  const el = document.getElementById('gallery');
+                                  if (el) el.scrollIntoView({ behavior: 'smooth' });
                                 }
                               }}
                               className="py-2.5 px-3 rounded-lg bg-[#0c1a2e] hover:bg-[#152843] text-white font-bold text-xs uppercase tracking-wider transition-all text-center flex items-center justify-center gap-1.5"

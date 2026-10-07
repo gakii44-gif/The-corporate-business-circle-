@@ -101,6 +101,10 @@ export const EventVideoSection: React.FC<EventVideoSectionProps> = ({
                     alt={selectedVideo.title}
                     className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105 filter brightness-90 group-hover:brightness-95"
                     loading="eager"
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = '/assets/gallery/juba-autoshow-press-briefing.jpg';
+                    }}
                   />
                   
                   {/* Cinematic Gradient Overlays */}
@@ -274,6 +278,11 @@ export const EventVideoSection: React.FC<EventVideoSectionProps> = ({
                         src={item.thumbnail}
                         alt={item.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                        loading="lazy"
+                        referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = '/assets/gallery/juba-autoshow-press-briefing.jpg';
+                        }}
                       />
                       <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
                         <div className={`w-7 h-7 rounded-full flex items-center justify-center ${

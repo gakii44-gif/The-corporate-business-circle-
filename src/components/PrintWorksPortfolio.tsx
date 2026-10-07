@@ -306,7 +306,7 @@ export const PrintWorksPortfolio: React.FC<PrintWorksPortfolioProps> = ({
 }) => {
   const [activeCategory, setActiveCategory] = useState<PortfolioCategory>('All');
   const [selectedSample, setSelectedSample] = useState<PortfolioSampleItem | null>(null);
-  const [activeViewMode, setActiveViewMode] = useState<'schematic' | 'realistic'>('schematic');
+  const [activeViewMode, setActiveViewMode] = useState<'schematic' | 'realistic'>('realistic');
 
   const categories: PortfolioCategory[] = ['All', 'Branding', 'Flyers', 'Business Cards', 'Banners'];
 

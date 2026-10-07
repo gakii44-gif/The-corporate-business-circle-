@@ -36,6 +36,10 @@ export const Hero: React.FC<HeroProps> = ({
   const activeMilestone = CBC_DIGNITARY_MILESTONES[activeMilestoneIndex] || CBC_DIGNITARY_MILESTONES[1];
 
   const getSlotKey = (id: string) => {
+    if (id.includes('taban-deng-gai')) return 'taban-deng-gai';
+    if (id.includes('allah-jabu')) return 'allah-jabu';
+    if (id.includes('mgurush')) return 'mgurush-launch';
+    if (id.includes('wani-igga')) return 'wani-igga';
     return id.replace('cbc-team-', '').replace('mandela-nelson-', '');
   };
 
@@ -170,6 +174,11 @@ export const Hero: React.FC<HeroProps> = ({
                             src={photoUrl}
                             alt={milestone.title}
                             className="w-full h-11 object-cover rounded-[2px]"
+                            loading="eager"
+                            referrerPolicy="no-referrer"
+                            onError={(e) => {
+                              (e.target as HTMLImageElement).src = '/assets/gallery/courtesy-visit-handshake.jpg';
+                            }}
                           />
                         ) : (
                           <div className="w-full h-11 bg-[#091527] flex flex-col items-center justify-center p-1 rounded-[2px]">

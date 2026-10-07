@@ -271,6 +271,7 @@ export default function App() {
         {SECTIONS.events && (<EventsSection
           onRegisterEvent={handleOpenRegistration}
           onViewEventDetails={handleOpenEventDetails}
+          onNavigateToGallery={() => handleNavigate('gallery')}
         />)}
 
         {(SECTIONS as any).announcements && (<AnnouncementsSection

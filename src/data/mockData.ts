@@ -266,7 +266,7 @@ export const UPCOMING_EVENTS: EventItem[] = [
     fee: 'Complimentary for Executive & Corporate Members / $120 Guest',
     capacity: '80 Executives',
     seatsLeft: 14,
-    image: 'https://images.pixieset.com/316632121/08754741079bb79c572116ed28fbb79f-large.jpg',
+    image: '/assets/gallery/glc-2026-panel-session.jpg',
     description:
       'A private morning roundtable for Managing Directors, Chief Financial Officers, and treasury heads discussing central banking monetary policy updates, digital payment integrations, and trade finance credit lines.',
     agenda: [
@@ -295,7 +295,7 @@ export const UPCOMING_EVENTS: EventItem[] = [
     fee: 'Included in Membership / $100 General Admission',
     capacity: '120 Participants',
     seatsLeft: 22,
-    image: 'https://images.pixieset.com/316632121/a4307576f96b8a892c18f7eab866cda7-large.jpg',
+    image: '/assets/events/mandela-nzanzu-networking.jpg',
     description:
       'Dedicated to advancing executive women across South Sudan’s corporate, legal, public, and entrepreneurial sectors. Features masterclasses on board governance, capital raising, and international leadership negotiation.',
     agenda: [
@@ -324,7 +324,7 @@ export const UPCOMING_EVENTS: EventItem[] = [
     fee: '$150 Single Ticket / $1,200 Corporate Table (10 pax)',
     capacity: '400 VIP Guests',
     seatsLeft: 65,
-    image: 'https://images.pixieset.com/316632121/e6252d9c1907ae722a1cf272eb1a250e-large.jpg',
+    image: '/assets/events/glc-grand-hall-pyramid.jpg',
     description:
       'The most prestigious night on South Sudan’s business calendar. An evening of black-tie sophistication, keynote address by international guest speakers, South Sudan Business of the Year Awards, and philanthropic auction.',
     agenda: [
@@ -387,7 +387,7 @@ export const ATTENDED_EVENTS: EventItem[] = [
     fee: 'Executive Delegation Representation',
     capacity: 'Regional C-Suite Delegation',
     seatsLeft: 0,
-    image: 'https://images.pixieset.com/316632121/08754741079bb79c572116ed28fbb79f-large.jpg',
+    image: '/assets/gallery/glc-2026-registration-area.jpg',
     description:
       'The Corporate Business Circle was represented at the prestigious East Africa CEO Investment Forum held in Nairobi on 17–18 September 2026. The CBC executive delegation, led by CEO / Delegate Mr. Nzanzu Tshomba Eli, actively engaged top regional Chief Executives, international venture syndicates, and trade commissioners to build cross-border commercial bridges, attract direct investments into South Sudan, and advocate for integrated regional supply chains.',
     agenda: [
@@ -492,7 +492,7 @@ export const PAST_EVENTS: EventItem[] = [
     fee: 'Concluded / Official CBC Production',
     capacity: '300+ C-Suite Executives & Regional Trade Dignitaries',
     seatsLeft: 0,
-    image: 'https://images.pixieset.com/316632121/bfdcfddb9e140f5ad69aa17a9dee9bb9-large.jpeg',
+    image: '/assets/events/glc-stage-delegation.jpg',
     description:
       'The landmark corporate forum uniting South Sudan’s C-Suite executives, government dignitaries, regional trade attaches, and development finance institutions. Planned, marketed, and executed with strategic focus on transport corridor infrastructure, regional tariff harmonization, and local manufacturing incentives.',
     agenda: [
@@ -525,7 +525,7 @@ export const PAST_EVENTS: EventItem[] = [
     fee: 'Concluded / Official CBC Production',
     capacity: '450+ Continental Delegates & Ministers',
     seatsLeft: 0,
-    image: 'https://images.pixieset.com/316632121/189449dcd220fe5487e5a97a8151a61d-large.jpeg',
+    image: '/assets/events/bsmart-customs-setup.jpg',
     description:
       'The 7th Edition of the Global Logistics Convention (GLC 2026) was successfully held on 25, 26 and 27 August 2026 at Pyramid Continental Hotel in Juba. Corporate Business Circle (CBC) was the official planning and marketing company, leading the end-to-end design, branding, public relations, high-security protocol, VIP guest hospitality, stagecraft, and commercial logistics. CBC was proudly presented with the prestigious award of "The Event Organizer of The Global Logistics Convention 2026".',
     agenda: [
@@ -623,7 +623,7 @@ export const PAST_EVENTS: EventItem[] = [
     fee: 'Concluded',
     capacity: '140 Delegates',
     seatsLeft: 0,
-    image: 'https://images.pixieset.com/316632121/189449dcd220fe5487e5a97a8151a61d-large.jpeg',
+    image: '/assets/events/mtn-ict-skills-centre.jpg',
     description:
       'Focused dialogue between freight forwarders, commercial importers, and revenue authorities on Nimule border post clearance, transit protocols, and common market advantages.',
     agenda: [
@@ -652,7 +652,7 @@ export const PAST_EVENTS: EventItem[] = [
     fee: 'Concluded',
     capacity: '75 Board Members',
     seatsLeft: 0,
-    image: 'https://images.pixieset.com/316632121/81882d43a1b41e1d9084f8f0806faaa1-large.jpeg',
+    image: '/assets/gallery/delegation-audience-group.jpg',
     description:
       'Intensive certification session on international corporate governance frameworks, board audit obligations, and risk mitigation strategies for growing South Sudanese enterprises.',
     agenda: [
@@ -961,7 +961,7 @@ export const CBC_VIDEOS: CBCVideoItem[] = [
     sourceChannel: 'https://tomemediaco.pixieset.com/glc-2/',
     youtubeId: '',
     youtubeUrl: 'https://tomemediaco.pixieset.com/glc-2/',
-    thumbnail: 'https://images.pixieset.com/316632121/bfdcfddb9e140f5ad69aa17a9dee9bb9-large.jpeg',
+    thumbnail: '/assets/events/glc-grand-hall-pyramid.jpg',
     duration: 'Official Gallery Archive',
     category: 'International Convention & Awards',
     date: '25th – 27th August 2026',

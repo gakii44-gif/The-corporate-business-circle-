@@ -115,6 +115,11 @@ export const PhotoLightboxModal: React.FC<PhotoLightboxModalProps> = ({
           src={photo.urlFull || photo.url}
           alt={photo.title}
           className="max-h-[70vh] max-w-full object-contain rounded-lg shadow-2xl border border-slate-800"
+          loading="eager"
+          referrerPolicy="no-referrer"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = '/assets/events/glc-grand-hall-pyramid.jpg';
+          }}
         />
       </div>
 

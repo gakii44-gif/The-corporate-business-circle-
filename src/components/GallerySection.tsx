@@ -551,9 +551,14 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenLightbox }
                     alt={photo.title}
                     className="w-full h-auto block transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
-                    onError={() => {
-                      // If the image fails to load, mark it as failed so it safely renders the Archival Placeholder
-                      setFailedImageIds(prev => new Set(prev).add(photo.id));
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      if (!target.src.includes('/assets/gallery/glc-2026-stage-branding.jpg') && !target.src.includes('/assets/events/glc-grand-hall-pyramid.jpg')) {
+                        target.src = '/assets/gallery/glc-2026-stage-branding.jpg';
+                      } else {
+                        setFailedImageIds(prev => new Set(prev).add(photo.id));
+                      }
                     }}
                   />
                 ) : (

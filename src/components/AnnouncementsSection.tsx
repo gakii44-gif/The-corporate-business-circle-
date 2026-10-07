@@ -406,6 +406,10 @@ export const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({
                   alt={featuredOffer.title}
                   className="w-full h-auto max-h-[380px] object-cover transition-transform duration-700 group-hover/poster:scale-105"
                   loading="eager"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = '/assets/gallery/juba-autoshow-press-briefing.jpg';
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none"></div>
 
@@ -689,6 +693,10 @@ export const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({
                       alt={offer.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = '/assets/gallery/juba-autoshow-press-briefing.jpg';
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0c1a2e] via-[#0c1a2e]/40 to-transparent"></div>
 
@@ -859,6 +867,11 @@ export const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({
                   src={selectedOffer.image}
                   alt={selectedOffer.title}
                   className="max-h-72 w-auto object-contain mx-auto"
+                  loading="eager"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = '/assets/gallery/juba-autoshow-press-briefing.jpg';
+                  }}
                 />
               </div>
 

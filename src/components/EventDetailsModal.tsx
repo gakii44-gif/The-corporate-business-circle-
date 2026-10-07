@@ -45,6 +45,11 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
             src={event.image}
             alt={event.title}
             className="w-full h-full object-cover"
+            loading="eager"
+            referrerPolicy="no-referrer"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = '/assets/events/glc-grand-hall-pyramid.jpg';
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0c1a2e] via-[#0c1a2e]/60 to-transparent"></div>
 
